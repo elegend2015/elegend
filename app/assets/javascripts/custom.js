@@ -26,18 +26,18 @@ $(document).ready(function() {
 	});
 	
 	//VEGAS
-	//$.vegas({src:'assets/background-1.jpg'})('overlay', {src:'assets/overlay.png'});
+	//$.vegas({src:'/assets/background-1.jpg'})('overlay', {src:'/assets/overlay.png'});
 	
 	$.vegas('slideshow', {
 		delay:5000,
 		backgrounds:[
-			{ src:'assets/background-1.jpg', fade:1500 },
-			{ src:'assets/background-2.jpg', fade:1500 },
-			{ src:'assets/background-3.jpg', fade:1500 },
-			{ src:'assets/background-4.jpg', fade:1500 },
-			{ src:'assets/background-5.jpg', fade:1500 },
+			{ src:'/assets/background-1.jpg', fade:1500 },
+			{ src:'/assets/background-2.jpg', fade:1500 },
+			{ src:'/assets/background-3.jpg', fade:1500 },
+			{ src:'/assets/background-4.jpg', fade:1500 },
+			{ src:'/assets/background-5.jpg', fade:1500 },
 	  	]
-	})('overlay', {src:'assets/overlay.png'});
+	})('overlay', {src:'/assets/overlay.png'});
 	
 	//SCROLLING
 	$("a.scroll[href^='#']").on('click', function(e) {
