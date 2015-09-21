@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   end
   
   match '/index', to: 'static_pages#index', via: 'get', as: :index
+  match '/profile', to: 'static_pages#profile', via: 'get', as: :profile
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

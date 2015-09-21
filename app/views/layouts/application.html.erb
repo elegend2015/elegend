@@ -15,6 +15,7 @@
 <%= yield :index_css %>
 <%= yield :signin_css %>
 <%= yield :signup_css %>
+<%= yield :profile_css %>
 <%= csrf_meta_tags %>
 
 </head>
@@ -31,9 +32,9 @@
             </div>
             <div class="navbar-collapse collapse">
             	<ul class="nav navbar-nav">
-                	<li><a href="index.html">Home</a></li>
+                	<li><a href="/">Home</a></li>
                     <li><a href="team.html">Admin team</a></li>
-                    <li><a href="profile.html">Profile</a></li>
+                    <li><%= link_to("Profile", profile_path, method: :get) %></li>
                     <li><a href="gallery.html">Gallery</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gaming</a>
@@ -66,7 +67,7 @@
                     <!-- <a href="signin.html" class="btn btn-inverse">Login</a>
                     <a href="signup.html" class="btn btn-primary">Register</a> -->
                     <% if user_signed_in? %>
-                      <span class="text-primary"><%= current_user.email %></span>
+                      <span class="text-primary"><%= current_user.first_name %></span>
                       <%= link_to 'Logout', destroy_user_session_path, class: "btn btn-inverse", :method => :delete %>
                     <% else %>
                     
@@ -92,6 +93,13 @@
     <!-- ==========================
     	HEADER - END 
     =========================== --> 
+<% if notice %>
+    <div class="container">
+        <p class="alert alert-success">
+            <%= notice %>
+        </p>
+    </div>
+<% end %>
 
 <%= yield %>
 
@@ -158,7 +166,7 @@
                 	<ul class="nav navbar-nav">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="team.html">Admin team</a></li>
-                        <li><a href="profile.html">Profile</a></li>
+                        <li><%= link_to("Profile", profile_path, method: :get) %></li>
                         <li><a href="tournament.html">Tournament</a></li>
                         <li><a href="gallery.html">Gallery</a></li>
                         <li><a href="forum.html">Forum</a></li>
@@ -179,5 +187,6 @@
 <%= yield :index_js %>
 <%= yield :signin_js %>
 <%= yield :signup_js %>
+<%= yield :profile_js %>
 </body>
 </html>
