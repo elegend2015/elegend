@@ -79,13 +79,20 @@
     <div class="box registration-form" id="reset-password">
         <h2>Frogotten password</h2>
         <p>If you've forgotten your password use this form to reset your password. New password will be send to your email.</p>
-        <form>
-            <div class="form-group">
-                <label for="forg_email">Email address</label>
-                <input type="email" class="form-control" id="forg_email" placeholder="Enter email">
-            </div>
-            <button type="submit" class="btn btn-primary">Reset password</button>
-        </form>
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="form-group">
+    <label for="forg_email">Email address</label>
+    <%= f.email_field :email, class: "form-control", id: "forg_email", placeholder: "Enter email", autofocus: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Reset password", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
     </div>
 </div>
 
