@@ -28,7 +28,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="navbar-header">
-                	<a href="/" class="navbar-brand"><%= image_tag "elegend.png", alt: "Home", class: "image_responsive logo_top" %></a>
+                    <%= link_to(image_tag("elegend-logo-top.png", alt: "Home"), root_path, method: :get) %>
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><i class="fa fa-bars"></i></button>
                 </div>
             </div>

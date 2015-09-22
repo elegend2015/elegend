@@ -2404,11 +2404,6 @@ only screen and (max-width: 767px) {
 .pad-top6 {
 	padding-top: 6em;
 }
-
-.logo_top {
-    width: 250px;
-}
-
-.logo_landing {
-    width: 530px;
+.pad-bot7 {
+	padding-bottom: 7em
 }
