@@ -355,6 +355,42 @@
                         <!-- TEAM MEMBER - END --> 
                     </div>
                     
+                    <div class="box  config">
+                        <p>
+                            <% for user in @users %>
+                                <%= user.email %> <%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post%><br>
+                           <% end %>
+
+                        </p>
+                    </div>
+
+                    <div class="box  config">
+                        <p>
+                            <h2>Friends</h2>
+                        <ul>
+                          <% for friendship in current_user.friendships %>
+                            <li>
+                              <%=h friendship.friend.first_name %>
+                              (<%= link_to "remove", friendship, :method => :delete %>)
+                            </li>
+                          <% end %>
+                        </ul>
+
+                        </p>
+                    </div>
+
+                    <div class="box  config">
+                         <p><%= link_to "Find Friends", profile_path %></p>
+
+                        <h2>Friended by Users</h2>
+                        <ul>
+                          <% for user in current_user.inverse_friends %>
+                            <li><%=h user.first_name %></li>
+                          <% end %>
+                        </ul>
+
+                    </div>
+
                     <div class="box colored config">
                     	<p>Here you can download player's config. <a href="" class="btn btn-simple">Download</a></p>
                     </div>

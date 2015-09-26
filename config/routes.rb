@@ -4,10 +4,11 @@ Rails.application.routes.draw do
   devise_scope :user do
     root to: "devise/sessions#new"
   end
-  
+   resources :friendships
   match '/index', to: 'static_pages#index', via: 'get', as: :index
   match '/profile', to: 'static_pages#profile', via: 'get', as: :profile
 
+  #match '/index', to: 'static_pages#index', via: [:get, :post] , as: :index
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
