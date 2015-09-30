@@ -31,7 +31,12 @@
                     <%= link_to(image_tag("elegend-logo-top.png", alt: "Home"), root_path, method: :get) %>
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><i class="fa fa-bars"></i></button>
                 </div>
+                <!-- <div>
+                <%- if devise_mapping.omniauthable? %>                            
+                              <%= link_to image_tag("login_facebook1.png", class: "image_responsive", alt: "Facebook login"), omniauth_authorize_path(resource_name, :facebook)  %>
+                          <% end -%> 
                 <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
+                </div> -->
             </div>
             <div class="col-sm-6">
                 <div class="navbar-collapse collapse">
@@ -46,13 +51,13 @@
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 <div class="col-sm-5">
     <div class="form-group">
-        <%= f.label :email %><br />
+        <%= f.label :email %>
         <%= f.email_field :email, class: "form-control", placeholder: "Enter Email", autofocus: true %>
     </div>
 </div>
 <div class="col-sm-5">
     <div class="form-group">
-      <%= f.label :password %><br />
+      <%= f.label :password %>
       <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
     </div>
 </div>
@@ -82,14 +87,13 @@
         <p>If you've forgotten your password use this form to reset your password. New password will be send to your email.</p>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
 
   <div class="form-group">
     <label for="forg_email">Email address</label>
     <%= f.email_field :email, class: "form-control", id: "forg_email", placeholder: "Enter email", autofocus: true %>
   </div>
 
-  <div class="actions">
+  <div class="form-group actions">
     <%= f.submit "Reset password", class: "btn btn-primary" %>
   </div>
 <% end %>
