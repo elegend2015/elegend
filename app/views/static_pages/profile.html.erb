@@ -341,12 +341,12 @@
                                     </ul>
                                 </div>
                                 <div class="col-sm-8 col-md-9">
-                                    <h2>Player nickname<small>John Doe</small></h2>
+                                    <h2>Player nickname<small><%= current_user.first_name %></small></h2>
                                     <ul class="list-unstyled">
-                                        <li><strong>Member since:</strong>21.08.2014</li>
+                                        <li><strong>Member since:</strong><%= current_user.created_at %></li>
                                         <li><strong>Team:</strong><a href="gaming-team.html">Ninjas in Pyjamas</a></li>
                                         <li><strong>Position:</strong>team leader</li>
-                                        <li><strong>Email:</strong>johndoe@pixelized.cz</li>
+                                        <li><strong>Email:</strong><%= current_user.email %></li>
                                     </ul>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam auctor dictum nibh, ac gravida orci porttitor et. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam posuere magna a dapibus luctus.</p>
                                 </div>
@@ -358,7 +358,7 @@
                     <div class="box  config">
                         <p>
                             <% for user in @users %>
-                                <%= user.email %> <%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post%><br>
+                                <%= user.first_name %> <%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post%><br>
                            <% end %>
 
                         </p>
@@ -380,6 +380,12 @@
                     </div>
 
                     <div class="box  config">
+                        <%= form_tag profile_path, :method => :get do %>
+                          <p>
+                            <%= text_field_tag :search, params[:search] %>
+                            <%= submit_tag "Search", :name => nil %>
+                          </p>
+                        <% end %>
                          <!-- <p><%= link_to "Find Friends", profile_path %></p> -->
 
                         <h2>Friended by Users</h2>

@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
 
+searchable do
+  text :first_name
+end
+
     def self.all_except(user)
   		where.not(id: user)
 	  end
