@@ -9,7 +9,7 @@ class StaticPagesController < ApplicationController
     fulltext params[:search]
  	end
   	@users = @search.results
-  	@users = User.all_except(current_user)
+  	#@users = User.all_except(current_user)
   end
 
   def demo
