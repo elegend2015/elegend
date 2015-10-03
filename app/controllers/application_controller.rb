@@ -9,8 +9,8 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
 
   def after_sign_in_path_for(resource)
-    request.env['omniauth.origin'] || stored_location_for(resource) || index_path
-    #demo_path
+    #request.env['omniauth.origin'] || stored_location_for(resource) || index_path
+    demo_path
   end
 
   def after_sign_out_path_for(resource_or_scope)

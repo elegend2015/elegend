@@ -29,8 +29,9 @@ gem 'sunspot_rails'
 
 group :development do
   gem 'sunspot_solr'
+  gem 'progress_bar' 
 end
- gem 'progress_bar'
+ 
 
  
 gem 'omniauth'
