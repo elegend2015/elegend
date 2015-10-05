@@ -5,15 +5,18 @@ class StaticPagesController < ApplicationController
   end
 
   def profile
-  	@search = User.search do
-    fulltext params[:search]
- 	end
-  	@users = @search.results
-  	#@users = User.all_except(current_user)
+  	
+  	@users = User.all_except(current_user)
+  end
+
+  def terms_of_service 
+
   end
 
   def demo
   	render :layout => 'demo'
   end
+
+
   
 end

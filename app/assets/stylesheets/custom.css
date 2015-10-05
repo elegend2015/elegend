@@ -503,6 +503,13 @@ footer.navbar p.copyright {
 	padding:15px 15px 0 0;
 }
 
+footer.navbar p.terms {
+	margin:0 0 0 15px;
+	color: #777777;
+	text-align:left;
+	padding:15px 15px 0 0;
+}
+
 /*------------------------------
 	JUMBOTRON
 ------------------------------*/
@@ -1863,6 +1870,10 @@ article.post-single .post-body .gallery-page {
 		text-align:center;
 		padding:15px;
 	}
+	footer.navbar p.terms {
+		text-align:center;
+		padding:15px;
+	}
 		
 	.navbar-default .navbar-toggle {
 		margin:6px 15px 0 0;
@@ -2400,6 +2411,9 @@ only screen and (max-width: 767px) {
 
 .pad-top2 {
 	padding-top: 2em;
+}
+.pad-top3 {
+	padding-top: 3em;
 }
 .pad-top6 {
 	padding-top: 6em;

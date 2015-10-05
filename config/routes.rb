@@ -7,7 +7,9 @@ Rails.application.routes.draw do
    resources :friendships
   match '/index', to: 'static_pages#index', via: 'get', as: :index
   match '/profile', to: 'static_pages#profile', via: 'get', as: :profile
+  match '/terms-of-service', to: 'static_pages#terms_of_service', via: 'get', as: :terms_of_service
   match '/demo', to: 'static_pages#demo', via: 'get', as: :demo
+  
 
   #match '/index', to: 'static_pages#index', via: [:get, :post] , as: :index
   # The priority is based upon order of creation: first created -> highest priority.
