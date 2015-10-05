@@ -1,7 +1,7 @@
 production:
   solr:
-    hostname: localhost
-    port: 8983
+    hostname: ec2-54-197-241-24.compute-1.amazonaws.com
+    port: 5432
     log_level: WARNING
     path: /solr/production
     # read_timeout: 2
