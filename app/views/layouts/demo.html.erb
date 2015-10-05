@@ -68,21 +68,9 @@
                       <%= link_to 'Logout', destroy_user_session_path, class: "btn btn-inverse", :method => :delete %>
                     <% else %>
                     
-                      <%= link_to 'Register', new_user_registration_path, class: "btn btn-primary" %>
                       <%= link_to 'Login', new_user_session_path, class: "btn btn-inverse" %>
                     <% end %>
-                    <!-- <a class="navbar-icon show2" id="open-search"><i class="fa fa-search"></i></a>
-                    <a class="navbar-icon hidden" id="close-search"><i class="fa fa-times"></i></a>
-                    <div class="hidden" id="navbar-search-form">
-                        <form role="search">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <input type="text" value="" name="navbar-search" id="navbar-search" class="form-control" placeholder="Search">
-                                    <span class="input-group-btn"><button class="btn btn-primary" type="submit" id="navbar-search-submit"><i class="fa fa-search"></i></button></span>
-                                </div>
-                            </div>
-                        </form>
-                    </div> -->
+                    
                 </div>
             </div>
         </div>
