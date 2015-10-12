@@ -5,8 +5,8 @@ class StaticPagesController < ApplicationController
   end
 
   def profile
-  	
   	@users = User.all_except(current_user)
+    @genres =Genre.all
   end
 
   def terms_of_service 

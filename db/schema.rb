@@ -11,13 +11,54 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150928084910) do
+ActiveRecord::Schema.define(version: 20151012094339) do
+
+  create_table "channels", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "img"
+    t.string   "type"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "consoles", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "img"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "cplayers", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "img"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "friendships", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "img"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "titles", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "img"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -37,6 +78,12 @@ ActiveRecord::Schema.define(version: 20150928084910) do
     t.string   "last_name"
     t.string   "provider"
     t.string   "uid"
+    t.string   "addr"
+    t.string   "phone"
+    t.string   "gender"
+    t.string   "status"
+    t.text     "about"
+    t.string   "profile_pic"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -1,5 +1,25 @@
 Rails.application.routes.draw do
 
+  get 'channels/index'
+
+  get 'channels/new'
+
+  get 'consoles/index'
+
+  get 'consoles/new'
+
+  get 'cplayers/index'
+
+  get 'cplayers/new'
+
+  get 'titles/index'
+
+  get 'titles/new'
+
+  get 'genres/index'
+
+  get 'genres/new'
+
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   devise_scope :user do
     root to: "devise/sessions#new"
@@ -10,7 +30,10 @@ Rails.application.routes.draw do
   match '/terms-of-service', to: 'static_pages#terms_of_service', via: 'get', as: :terms_of_service
   match '/demo', to: 'static_pages#demo', via: 'get', as: :demo
   
-
+resources :genres do
+  # collection do
+  # end
+end
   #match '/index', to: 'static_pages#index', via: [:get, :post] , as: :index
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -356,6 +356,12 @@
                     </div>
                     
                     <div class="box  config">
+                        <% @genres.each do |genre| %>
+                            <%= genre.name %>
+                        <% end %>
+                    </div>                    
+
+                    <div class="box  config">
                         <p>
                             <% for user in @users %>
                                 <%= user.first_name %> <%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post%><br>
