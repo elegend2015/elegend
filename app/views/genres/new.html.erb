@@ -37,6 +37,10 @@
 		<h3>Genre Name: </h3>
 	<%= f.text_field :name, type:"text", tabindex: "1", class: "form-control", autofocus: true, required: true %>
 	</div>
+    <!-- <div class="field">
+      <%= f.label :tag_list, "Tags (separated by commas)" %><br />
+      <%= f.text_field :tag_list %>
+    </div> -->
 	<div class="form-group">
 		<h3>Description: </h3>
 	<%= f.text_area :description, type:"text", tabindex: "2", class: "form-control", required: true %>

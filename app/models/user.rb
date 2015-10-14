@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :cplayers
   has_many :consoles
   has_many :channels
+  acts_as_taggable
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

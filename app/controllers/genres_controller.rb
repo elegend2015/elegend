@@ -1,15 +1,30 @@
 class GenresController < ApplicationController
-  def index
-  end
-
+  
   def new
   	 @genre = Genre.new
   end
 
+  def edit
+     @genre = Genre.find(params[:id])
+  end
+  
+  def show
+     @genres =Genre.all
+    @genre = Genre.find(params[:id])
+  end
+
   def create
   	@genre = Genre.new(genre_params)
-  	@genre.save
-  	redirect_to profile_path
+  	if @genre.save
+  	   redirect_to @genre
+    end
+  end
+
+  def update
+    @genre = Genre.find(params[:id])
+    @genre.update(genre_params)
+    
+    redirect_to @genre
   end
 
   private

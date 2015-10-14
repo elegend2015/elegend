@@ -16,9 +16,10 @@ Rails.application.routes.draw do
 
   get 'titles/new'
 
-  get 'genres/index'
+  # get 'genres/index'
 
-  get 'genres/new'
+  # get 'genres/new'
+  # get 'genres/edit'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   devise_scope :user do
@@ -26,13 +27,19 @@ Rails.application.routes.draw do
   end
    resources :friendships
   match '/index', to: 'static_pages#index', via: 'get', as: :index
-  match '/profile', to: 'static_pages#profile', via: 'get', as: :profile
+  match '/profile', to: 'static_pages#profile', via: [:get, :post], as: :profile
   match '/terms-of-service', to: 'static_pages#terms_of_service', via: 'get', as: :terms_of_service
   match '/demo', to: 'static_pages#demo', via: 'get', as: :demo
   
 resources :genres do
   # collection do
   # end
+end
+
+resources :user_details do 
+  collection do
+    post :update_user
+  end
 end
   #match '/index', to: 'static_pages#index', via: [:get, :post] , as: :index
   # The priority is based upon order of creation: first created -> highest priority.

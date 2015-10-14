@@ -20,8 +20,30 @@
     
 <% end %>
 
-<h1>Genres#index</h1>
-<p>Find me in app/views/genres/index.html.erb</p>
+<div class="container hidden-xs">
+    <div class="header-title">
+        <div class="pull-left">
+            <h2><a href="/"><span class="text-primary">Genre</span>Show</a></h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="well">
+       <div class="row">
+            <div class="col-sm-12">
+                <div class="box  config">
+                    <% @genres.each do |genre| %>
+                        <%= genre.name %><br>
+                        <%= genre.tag_list %>
+                    <% end %>
+                                     
+    <p><%= link_to 'Edit Genres', edit_genre_path(@genre), :class => 'btn btn-primary' %></p>
+                </div>
+            </div>
+        </div>  
+    </div>
+</div>
 
 <%= content_for :general_js do %>       
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>

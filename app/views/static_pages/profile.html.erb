@@ -316,7 +316,7 @@
                     
                     <!-- SIDEBAR BOX - START -->
                     <div class="box sidebar-box widget-wrapper">
-                    	<h3>Latest Tweets</h3>
+                    	<h3>Latest News</h3>
                         <div id="twitter-wrapper">
                         </div>
                     </div>
@@ -355,10 +355,39 @@
                         <!-- TEAM MEMBER - END --> 
                     </div>
                     
-                    <div class="box  config">
+                    <!-- <div class="box  config">
                         <% @genres.each do |genre| %>
                             <%= genre.name %>
+                            
                         <% end %>
+                    </div> -->
+
+                    <div class="box  config">
+                        <div class="row">
+                            <div class="col-sm-6">
+
+                                <%= form_tag(update_user_user_details_path, :method=>'post') do %>
+                                    <%= label_tag 'addr', 'Address' %>
+                                    <%= text_field_tag 'addr', current_user.addr, class: "form-control" %>
+                                    <%= label_tag 'phone', 'Phone' %>
+                                    <%= text_field_tag 'phone', current_user.phone, class: "form-control" %>
+                                    <%= label_tag 'gender', 'Gender' %>
+                                    <%= text_field_tag 'gender', current_user.gender, class: "form-control" %>
+                                    <%= label_tag 'status', 'Status' %>
+                                    <%= text_field_tag 'status', current_user.status, class: "form-control" %>
+                                    <%= label_tag 'about', 'About' %>
+                                    <%= text_field_tag 'about', current_user.about, class: "form-control" %>
+                                   <%= submit_tag "update"%>
+                                <% end %>
+                            </div>
+                            <div class="col-sm-6">
+                                <%= current_user.addr %><br>
+                                <%= current_user.phone %><br>
+                                <%= current_user.gender %><br>
+                                <%= current_user.status %><br>
+                                <%= current_user.about %><br>
+                            </div>
+                        </div>
                     </div>                    
 
                     <div class="box  config">
