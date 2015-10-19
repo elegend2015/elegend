@@ -4,7 +4,7 @@ class CreateChannels < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.string :img
-      t.string :type
+      t.string :channel_type
 
       t.timestamps null: false
     end

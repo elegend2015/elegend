@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'channels/index'
-
-  get 'channels/new'
-
   get 'consoles/index'
 
   get 'consoles/new'
@@ -35,6 +31,11 @@ resources :messages
 resources :genres do
   # collection do
   # end
+end
+resources :channels do
+collection do 
+  post :create_new_post
+  end
 end
 
 resources :user_details do 
