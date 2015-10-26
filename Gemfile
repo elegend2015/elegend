@@ -42,7 +42,7 @@ gem 'omniauth-facebook'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
-# gem 'unicorn'
+#gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -54,6 +54,10 @@ group :development, :test do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 end
+
+gem 'mina', '0.3.1'
+gem 'mina-sidekiq', '0.3.0', :require => false 
+gem 'mina-unicorn', '0.0.3', :require => false
 
 group :production do
   gem 'pg', '0.15.1'
