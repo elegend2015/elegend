@@ -174,6 +174,74 @@
     =========================== -->
     <div class="container">
         <section class="content-wrapper">
+<div class="row">
+    <div class="col-sm-12">
+        <div class="box">                        
+            <!-- TEAM MEMBER - START -->   
+            <div class="team-member single">
+                <div class="row">
+                    <div class="col-sm-4 col-md-3">
+                        <img src="/assets/member-01.jpg" class="img-responsive img-circle center-block" alt="">
+                        <ul class="brands brands-tn brands-circle brands-colored brands-inline text-center">
+                            <li><a href="https://www.facebook.com/pixelized.cz" target="_blank" class="brands-facebook"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="https://twitter.com/Pixelizedcz" target="_blank" class="brands-twitter"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="https://plus.google.com/+PixelizedCz/" target="_blank" class="brands-google-plus"><i class="fa fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-8 col-md-9">
+                        <h2>Player nickname<small><%= current_user.first_name %></small></h2>
+                        <ul class="list-unstyled">
+                            <li><strong>Member since:</strong><%= current_user.created_at %></li>
+                            <li><strong>Team:</strong><a href="gaming-team.html">Ninjas in Pyjamas</a></li>
+                            <li><strong>Position:</strong>team leader</li>
+                            <li><strong>Email:</strong><%= current_user.email %></li>
+                        </ul>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam auctor dictum nibh, ac gravida orci porttitor et. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam posuere magna a dapibus luctus.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- TEAM MEMBER - END --> 
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-4">
+        <div class="box">
+      <ul class="nav nav-tabs nav-stacked" role="tablist">
+        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Overview</a></li>
+        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Contact</a></li>
+        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Basic Information</a></li>
+        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Details About You</a></li>
+      </ul>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="box">
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="home">
+                <h2>Name: <%= current_user.first_name %></h2>
+                <h2>Email: <%= current_user.email %></h2>
+                <h2>Gender: <%= current_user.gender %></h2>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="profile">
+                <h2>Address: <%= current_user.addr %></h2>
+                <h2>Phone: <%= current_user.phone %></h2>
+                <h2>Email: <%= current_user.email %></h2>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="messages">
+                <h2>Name: <%= current_user.first_name %></h2>
+                <h2>Gender: <%= current_user.gender %></h2>
+                <h2>Status: <%= current_user.status %></h2>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="settings">
+                <h2>Details: <%= current_user.about %><br></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
         	<div class="row">
             
             	<!-- SIDEBAR - START -->
@@ -327,33 +395,7 @@
                 
                 <!-- CONTENT BODY - START -->
                 <div class="col-sm-8">
-                	<div class="box">
-                    	
-                        <!-- TEAM MEMBER - START -->   
-                        <div class="team-member single">
-                            <div class="row">
-                                <div class="col-sm-4 col-md-3">
-                                	<img src="/assets/member-01.jpg" class="img-responsive img-circle center-block" alt="">
-                                	<ul class="brands brands-tn brands-circle brands-colored brands-inline text-center">
-                                        <li><a href="https://www.facebook.com/pixelized.cz" target="_blank" class="brands-facebook"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="https://twitter.com/Pixelizedcz" target="_blank" class="brands-twitter"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="https://plus.google.com/+PixelizedCz/" target="_blank" class="brands-google-plus"><i class="fa fa-google-plus"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-sm-8 col-md-9">
-                                    <h2>Player nickname<small><%= current_user.first_name %></small></h2>
-                                    <ul class="list-unstyled">
-                                        <li><strong>Member since:</strong><%= current_user.created_at %></li>
-                                        <li><strong>Team:</strong><a href="gaming-team.html">Ninjas in Pyjamas</a></li>
-                                        <li><strong>Position:</strong>team leader</li>
-                                        <li><strong>Email:</strong><%= current_user.email %></li>
-                                    </ul>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam auctor dictum nibh, ac gravida orci porttitor et. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam posuere magna a dapibus luctus.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- TEAM MEMBER - END --> 
-                    </div>
+                	
                     
                     <!-- <div class="box  config">
                         <% @genres.each do |genre| %>
