@@ -209,34 +209,101 @@
     <div class="col-sm-4">
         <div class="box">
       <ul class="nav nav-tabs nav-stacked" role="tablist">
-        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Overview</a></li>
-        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Contact</a></li>
-        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Basic Information</a></li>
-        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Details About You</a></li>
+        <li role="presentation" class="active"><a href="#contact_info" aria-controls="contact_info" role="tab" data-toggle="tab">Contact Information</a></li>
+        <li role="presentation"><a href="#personal_info" aria-controls="personal_info" role="tab" data-toggle="tab">Personal Information</a></li>
+        <li role="presentation"><a href="#gamer" aria-controls="gamer" role="tab" data-toggle="tab">Gamer Information</a></li>
+        <li role="presentation"><a href="#channel" aria-controls="channel" role="tab" data-toggle="tab">Channel Section</a></li>
+        <li role="presentation"><a href="#friend" aria-controls="friend" role="tab" data-toggle="tab">Friends</a></li>
       </ul>
         </div>
     </div>
     <div class="col-sm-8">
         <div class="box">
             <div class="tab-content">
-                <div role="tabpanel" class="tab-pane fade in active" id="home">
-                <h2>Name: <%= current_user.first_name %></h2>
-                <h2>Email: <%= current_user.email %></h2>
-                <h2>Gender: <%= current_user.gender %></h2>
+                <div role="tabpanel" class="tab-pane fade in active" id="contact_info">
+                    <div class="row">
+                        <div class="col-sm-11">
+                    <h5>Address: <%= current_user.addr %></h5>
+                    <h5>Phone: <%= current_user.phone %></h5>
+                    <h5>Email: <%= current_user.email %></h5>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModalContact">Edit</button>
+                        </div>
+                    </div>
                 </div>
-                <div role="tabpanel" class="tab-pane fade" id="profile">
-                <h2>Address: <%= current_user.addr %></h2>
-                <h2>Phone: <%= current_user.phone %></h2>
-                <h2>Email: <%= current_user.email %></h2>
+                <div role="tabpanel" class="tab-pane fade" id="personal_info">
+                    <div class="row">
+                        <div class="col-sm-11">
+                    <h5>Gender: <%= current_user.gender %></h5>
+                    <h5>Status: <%= current_user.status %></h5>
+                    <h5>About: <%= current_user.about %></h5>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModalContact">Edit</button>
+                        </div>
+                    </div>
                 </div>
-                <div role="tabpanel" class="tab-pane fade" id="messages">
-                <h2>Name: <%= current_user.first_name %></h2>
-                <h2>Gender: <%= current_user.gender %></h2>
-                <h2>Status: <%= current_user.status %></h2>
+                <div role="tabpanel" class="tab-pane fade" id="gamer">
+                    <div class="box">
+                        <% @genres.each do |genre| %>
+                            <h5>Name: <%= genre.name %></h5>
+                            <h5>Description: <%= genre.description %></h5>
+                            <br>
+                        <% end %>
+                    </div>
                 </div>
-                <div role="tabpanel" class="tab-pane fade" id="settings">
-                <h2>Details: <%= current_user.about %><br></h2>
+                <div role="tabpanel" class="tab-pane fade" id="channel">
+                    <div class="box">
+                        <% @channels.each do |channel| %>
+                            <h5>Name: <%= channel.name %></h5>
+                            <h5>Description: <%= channel.description %></h5>
+                            <h5>Channel Type: <%= channel.channel_type %></h5>
+                            <br>
+                        <% end %>
+                    </div>
                 </div>
+                <div role="tabpanel" class="tab-pane fade" id="friend">
+                    <div class="box">
+                        <div class="box  config">
+                        <p>
+                            <% for user in @users %>
+                                <%= user.first_name %> <%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post%><br>
+                           <% end %>
+
+                        </p>
+                    </div>
+
+                    <div class="box  config">
+                        <p>
+                            <h2>Friends</h2>
+                        <ul>
+                          <% for friendship in current_user.friendships %>
+                            <li>
+                              <%=h friendship.friend.first_name %>
+                              (<%= link_to "remove", friendship, :method => :delete %>)
+                            </li>
+                          <% end %>
+                        </ul>
+
+                        </p>
+                    </div>
+
+                    <div class="box  config">
+                        
+                         <!-- <p><%= link_to "Find Friends", profile_path %></p> -->
+
+                        <h2>Friended by Users</h2>
+                        <ul>
+                          <% for user in current_user.inverse_friends %>
+                            <li><%=h user.first_name %></li>
+                          <% end %>
+                        </ul>
+
+                    </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -408,66 +475,15 @@
                         <div class="row">
                             <div class="col-sm-6">
 
-                                <%= form_tag(update_user_user_details_path, :method=>'post') do %>
-                                    <%= label_tag 'addr', 'Address' %>
-                                    <%= text_field_tag 'addr', current_user.addr, class: "form-control" %>
-                                    <%= label_tag 'phone', 'Phone' %>
-                                    <%= text_field_tag 'phone', current_user.phone, class: "form-control" %>
-                                    <%= label_tag 'gender', 'Gender' %>
-                                    <%= text_field_tag 'gender', current_user.gender, class: "form-control" %>
-                                    <%= label_tag 'status', 'Status' %>
-                                    <%= text_field_tag 'status', current_user.status, class: "form-control" %>
-                                    <%= label_tag 'about', 'About' %>
-                                    <%= text_field_tag 'about', current_user.about, class: "form-control" %>
-                                   <%= submit_tag "update"%>
-                                <% end %>
+    
                             </div>
                             <div class="col-sm-6">
-                                <%= current_user.addr %><br>
-                                <%= current_user.phone %><br>
-                                <%= current_user.gender %><br>
-                                <%= current_user.status %><br>
-                                <%= current_user.about %><br>
+                                
                             </div>
                         </div>
                     </div>                    
 
-                    <div class="box  config">
-                        <p>
-                            <% for user in @users %>
-                                <%= user.first_name %> <%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post%><br>
-                           <% end %>
-
-                        </p>
-                    </div>
-
-                    <div class="box  config">
-                        <p>
-                            <h2>Friends</h2>
-                        <ul>
-                          <% for friendship in current_user.friendships %>
-                            <li>
-                              <%=h friendship.friend.first_name %>
-                              (<%= link_to "remove", friendship, :method => :delete %>)
-                            </li>
-                          <% end %>
-                        </ul>
-
-                        </p>
-                    </div>
-
-                    <div class="box  config">
-                        
-                         <!-- <p><%= link_to "Find Friends", profile_path %></p> -->
-
-                        <h2>Friended by Users</h2>
-                        <ul>
-                          <% for user in current_user.inverse_friends %>
-                            <li><%=h user.first_name %></li>
-                          <% end %>
-                        </ul>
-
-                    </div>
+                    
 
                     <div class="box colored config">
                     	<p>Here you can download player's config. <a href="" class="btn btn-simple">Download</a></p>
@@ -577,6 +593,53 @@
     	CONTENT - END 
     =========================== -->
    
+   <!-- Button trigger modal -->
+
+
+<!-- Modal Contact & Personal Information -->
+<div class="modal fade" id="myModalContact" tabindex="-1" role="dialog" aria-labelledby="myModalLabelContact">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabelContact">Contact and Personal Information</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_tag(update_user_user_details_path, :method=>'post') do %>
+        <div class="form-group"> 
+            <%= label_tag 'addr', 'Address' %>
+            <%= text_field_tag 'addr', current_user.addr, class: "form-control" %>
+        </div>
+        <div class="form-group"> 
+            <%= label_tag 'phone', 'Phone' %>
+            <%= text_field_tag 'phone', current_user.phone, class: "form-control" %>
+        </div>
+        <div class="form-group"> 
+            <%= label_tag 'gender', 'Gender' %>
+            <%= text_field_tag 'gender', current_user.gender, class: "form-control" %>
+        </div>
+        <div class="form-group"> 
+            <%= label_tag 'status', 'Status' %>
+            <%= text_field_tag 'status', current_user.status, class: "form-control" %>
+        </div>
+        <div class="form-group"> 
+            <%= label_tag 'about', 'About' %>
+            <%= text_area_tag 'about', current_user.about, class: "form-control" %>
+        </div>
+        <div class="form-group"> 
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+           <%= submit_tag "Save" , class: "btn btn-primary" %>
+        </div>
+        <% end %>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
 <%= content_for :profile_js do %>       
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="/assets/bootstrap.min.js"></script>

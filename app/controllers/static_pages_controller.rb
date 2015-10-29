@@ -7,6 +7,7 @@ class StaticPagesController < ApplicationController
   def profile
   	@users = User.all_except(current_user)
     @genres = Genre.all
+    @channels = Channel.all
   end
 
   def terms_of_service 
