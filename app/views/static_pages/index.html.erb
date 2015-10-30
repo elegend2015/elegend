@@ -170,6 +170,26 @@
     =========================== -->
     <div class="container">
         <section class="content-wrapper">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="box">
+<h4>share your thoughts: </h4>
+
+<%= form_for Newsfeed.new, :remote => true do |f| %>
+  <%= f.text_area :post, class: "form-control", autofocus: true %></br>
+  <%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="box">
+<div id="feed_post">
+  <%= render :partial => 'newsfeeds/newsfeed', :collection => @feeds %>
+</div>
+                    </div>
+                </div>
+            </div>
+
         	<div class="row">
             
             	<!-- SIDEBAR - START -->

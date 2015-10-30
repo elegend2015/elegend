@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151019104907) do
+ActiveRecord::Schema.define(version: 20151030094539) do
 
   create_table "channel_posts", force: :cascade do |t|
     t.text     "comment"
@@ -64,6 +64,15 @@ ActiveRecord::Schema.define(version: 20151019104907) do
 
   create_table "messages", force: :cascade do |t|
     t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "newsfeeds", force: :cascade do |t|
+    t.text     "post"
+    t.text     "comment"
+    t.integer  "user_id"
+    t.integer  "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

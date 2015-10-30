@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   match '/demo', to: 'static_pages#demo', via: 'get', as: :demo
   
 resources :messages
+resources :newsfeeds
 resources :genres do
   # collection do
   # end
