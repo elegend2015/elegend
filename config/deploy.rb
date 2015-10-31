@@ -13,7 +13,7 @@ require 'mina/git'
 set :rails_env, 'production'
 set :domain, '104.236.95.110'
 set :deploy_to, '/home/priyanko/www/elegend'
-set :repository, 'https://github.com/elegend2015/elegend.git'
+set :repository, 'https://github.com/priyankorv/elegend.git'
 set :branch, 'master'
 set :user, 'priyanko'
 set :forward_agent, true

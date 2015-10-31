@@ -20,8 +20,17 @@
     
 <% end %>
 
-<h1>Chat</h1>
-
+<div class="container hidden-xs">
+    <div class="header-title">
+        <div class="pull-left">
+            <h1><span class="text-primary">Messages</span></h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <section class="content-wrapper">
+        <div class="row">
+            <div class="col-sm-12">
 <div id="chat">
   <%= render :partial => 'messages/message', :collection => @messages %>
 </div>
@@ -32,6 +41,10 @@
 <% end %>
 
 <%= subscribe_to "/messages/new" %>
+            </div>
+        </div>
+    </section>
+</div>
    
 <%= content_for :profile_js do %>       
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
