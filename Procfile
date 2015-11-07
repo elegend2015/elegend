@@ -1,1 +1,1 @@
-web: bundle exec rackup -R private_pub.ru -p $PORT
+faye: rackup private_pub.ru -s thin -p $PORT -e $RACK_ENV
