@@ -1,6 +1,19 @@
-<ul>
-	<li>
-  		<%= message.created_at.strftime("%H:%M") %>
-  		<%= message.content %>
-	</li>
-</ul>
+	<div class="row">
+		<div class="col-sm-12 text-center">
+			<hr>
+	<%= message.created_at.strftime("%D") %>
+		</div>
+  	</div>
+	<div class="row">
+		<div class="col-sm-10">
+			Name: <%= current_user.first_name %>
+		</div>
+  		<div class="col-sm-2 text-right">
+  			<%= message.created_at.strftime("%H:%M") %>
+  		</div>
+  	</div>
+  	<div class="row">
+  		<div class="col-sm-10">
+			Message: <%= message.content %>
+		</div>
+	</div>

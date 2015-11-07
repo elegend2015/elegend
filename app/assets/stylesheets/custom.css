@@ -171,8 +171,7 @@ h6 {
 }
 
 textarea.form-control {
-	resize:vertical;
-	height:180px;
+	resize:vertical;	
 }
 
 span.required {
@@ -2410,6 +2409,9 @@ only screen and (max-width: 767px) {
 /* My CSS */
 /* Sign in Page*/
 
+.pad-top1 {
+	padding-top: 1em;
+}
 .pad-top2 {
 	padding-top: 2em;
 }
@@ -2423,3 +2425,7 @@ only screen and (max-width: 767px) {
 	padding-bottom: 12em
 }
 
+.maxh18 {
+	max-height: 18em;
+	overflow-y: auto;
+}
