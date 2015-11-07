@@ -25,9 +25,9 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
-gem 'private_pub'
-gem 'thin'
-gem 'foreman'
+# gem 'private_pub'
+# gem 'thin'
+# gem 'foreman'
 gem 'acts-as-taggable-on'
 
 # gem 'sunspot_rails'
