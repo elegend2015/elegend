@@ -7,9 +7,13 @@ class NewsfeedsController < ApplicationController
     	@feed = Newsfeed.create!(feed_params)
   	end
 
+  	def show
+  		
+  	end
+
 	private
 
   	def feed_params
-    	params.require(:newsfeed).permit(:post)
+    	params.require(:newsfeed).permit(:post, :feed_title)
   	end
 end

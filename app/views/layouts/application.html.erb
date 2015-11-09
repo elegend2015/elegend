@@ -35,10 +35,12 @@
             <div class="navbar-collapse collapse">
             	<ul class="nav navbar-nav">
                 	<li><a href="/">Home</a></li>
-                    <li><a href="team.html">Admin team</a></li>
                     <li><%= link_to("Profile", profile_path, method: :get) %></li>
+                    <li><%= link_to("Message", messages_path, method: :get) %></li>
                     <li><a href="gallery.html">Gallery</a></li>
-                    <li class="dropdown">
+                    <li><a href="gallery.html">Gaming</a></li>
+                    <li><a href="gallery.html">Community</a></li>
+                    <!-- <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gaming</a>
                         <ul class="dropdown-menu">
                         	<li><a href="gaming-team.html"><i class="fa fa-plus"></i>Gaming team</a></li>
@@ -46,31 +48,13 @@
                             <li><a href="match-single.html"><i class="fa fa-plus"></i>Single match</a></li>
                             <li><a href="tournament.html"><i class="fa fa-plus"></i>Tournament</a></li>
                         </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Forum</a>
-                        <ul class="dropdown-menu">
-                        	<li><a href="forum.html"><i class="fa fa-plus"></i>Forum Page</a></li>
-                            <li><a href="forum-list.html"><i class="fa fa-plus"></i>Forum threads</a></li>
-                            <li><a href="forum-single.html"><i class="fa fa-plus"></i>Single forum post</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages</a>
-                        <ul class="dropdown-menu">
-                        	<li><a href="signup.html"><i class="fa fa-plus"></i>Sign up</a></li>
-                            <li><a href="signin.html"><i class="fa fa-plus"></i>Sign in</a></li>
-                            <li><a href="servers.html"><i class="fa fa-plus"></i>Servers</a></li>
-                        	<li><a href="404.html"><i class="fa fa-plus"></i>Error Page</a></li>
-                        </ul>
-                    </li>
+                    </li> -->
+                    
                 </ul>
-                <div class="pull-right navbar-buttons hidden-xs">    
-                    
-                      <span class="text-primary"><%= current_user.first_name %></span>
-                      <%= link_to 'Logout', destroy_user_session_path, class: "btn btn-inverse", :method => :delete %>                    
-                    
-                </div>
+                <ul class="nav navbar-nav pull-right">
+                    <li><%= link_to(current_user.first_name , profile_path, method: :get) %></li>
+                    <li><%= link_to 'Logout', destroy_user_session_path, class: "btn btn-inverse", :method => :delete %> </li>
+                </ul>
             </div>
             <% else %>
             
