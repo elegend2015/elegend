@@ -12,9 +12,9 @@
         	<%= newsfeed.post %></p>
         <div class="post-info">
             <span class= "text-capitalize">Posted by: <strong><%= current_user.first_name %> <%= current_user.last_name %></strong></span>
-            <% @feeds.each do |feed| %>
+            
             <%= link_to "View More", newsfeed_path(:id), class: "btn btn-inverse" %>
-            <% end %>
+            
         </div>
     </div>
 </article>
