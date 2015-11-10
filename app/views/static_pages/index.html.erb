@@ -325,6 +325,11 @@
 <div id="feed_post">
   <%= render :partial => 'newsfeeds/newsfeed', :collection => @feeds %>
 </div>
+
+<div class="text-center">
+    <%= will_paginate @feeds %>
+</div>
+
                 </div>
             </div>
         </div>
