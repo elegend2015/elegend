@@ -5,6 +5,7 @@ class NewsfeedsController < ApplicationController
 
   	def create
     	@feed = Newsfeed.create!(feed_params)
+      redirect_to :back
   	end
 
   	def show
@@ -14,6 +15,6 @@ class NewsfeedsController < ApplicationController
 	private
 
   	def feed_params
-    	params.require(:newsfeed).permit(:post, :feed_title)
+    	params.require(:newsfeed).permit(:post, :feed_title, :image)
   	end
 end

@@ -29,7 +29,9 @@ gem 'devise'
 # gem 'thin'
 # gem 'foreman'
 gem 'acts-as-taggable-on'
-
+gem 'will_paginate'
+gem 'carrierwave'
+gem 'cloudinary'
 # gem 'sunspot_rails'
 # group :development do
 #   gem 'sunspot_solr'
@@ -56,7 +58,7 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
 end
 
-gem 'will_paginate'
+
 gem 'mina', '0.3.1'
 gem 'mina-sidekiq', '0.3.0', :require => false 
 gem 'mina-unicorn', '0.0.3', :require => false

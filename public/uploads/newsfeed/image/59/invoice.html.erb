@@ -1,0 +1,191 @@
+
+<%= content_for :howitworks_css do %>
+    <!-- Load Our CSS - Do not alter the load order -->
+    <link href="/assets/bootstrap.min.css" rel="stylesheet"><!-- Bootstrap Core - ALways load first -->
+    <link href="/assets/animate.css" rel="stylesheet"><!-- Animatations -->
+    <link href="/assets/icomoon.css" rel="stylesheet"><!-- Icon Font -->
+    <link href="/assets/owl.carousel.css" rel="stylesheet"><!-- Owl Carousel/slide -->
+    <link href="/assets/style.css" rel="stylesheet"><!-- Main theme stylesheet -->
+    <link href="/assets/custom.css" rel="stylesheet"><!-- Custom styles - Always load last -->
+<% end %>
+
+<%= content_for :index_body do %>id="home"<% end %>
+
+    <!-- ============================ Header/fixed sidebar ============================ -->
+
+    <header id="header">
+        
+        <!-- Main menu toggle -->
+        <button class="toggle" data-toggle="modal" data-target="#menumodal">
+            <span class="menu-bar bar-1"></span>
+            <span class="menu-bar bar-2"></span>
+            <span class="menu-bar bar-3"></span>
+        </button>
+        
+        <%= render "layouts/sidemenu" %>
+
+        <!-- Bullet navigation -->
+        <nav id="bullets" class="cover">
+            <ul>
+                <li class="current-page-item"><a href="#wrapper"></a></li>
+                <li><a href="#two"></a></li>
+                <li><a href="#three"></a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <!-- Social menu toggle - keep outside of header to prevent horrible positioning problem on ipads -->
+    <button class="hidden-xs social" data-toggle="modal" data-target="#socialmodal">
+        <span class="icon-share"></span>
+    </button>
+    
+    <!-- End header/fixed sidebar -->
+
+    <!-- ============================ Start the page content ============================ -->
+
+    <!-- Leading Page Container -->
+    <!-- Always keep all page content wrapped in this div, with id="wrapper" and class="page-content" -->
+    <div id="wrapper" class="page-content">
+
+        <!-- ============================ Section Start ============================ -->
+
+        <section class="container-fluid titlebar">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h3 class="pull-left">Your dashboard</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================ Section End ============================== -->
+<section class="container-fluid" id="transact">
+            <div class="row">
+              <div class="col-sm-2"></div>
+                <div class="col-sm-8">
+       <h2>New Investment</h2>
+        <div class="alert alert-warning">
+            <p>In most cases, Rupeevest's cut-off time for same day execution is 2 PM. That is, transaction requests placed (and funded, if applicable) on a business day before 2 PM will be executed with the NAV as of the close of the same business day. However, the applicable cut-off time for all liquid fund transactions (regardless of amount) and for non-liquid fund transactions of greater than or equal to Rs. 2 lakhs will be 1 PM.</p>
+        </div>
+                </div>
+                <div class="col-sm-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-5">
+        <h4>Investment will be made in the name of : <span class="pink"><%= @client.inv_name %></span></h4>
+        <h4>Bank Name : <span class="pink"><%= @client.bank_name %></span></h4>
+        <h4>Bank A/C No : <span class="pink"><%= @client.acc_no %></span></h4>
+        <h4>IFSC Code : <span class="pink"><%= @client.ifsc_code %></span></h4>
+        <h4>Branch Name : <span class="pink"><%= @client.branch_name %></span></h4>
+                </div>
+
+       
+        <div class="col-sm-3">
+ <table class="table table-striped table-bordered table-condensed table-hover table-responsive text-center">
+            <thead>
+              <tr>
+                <th>Transaction Type</th>
+                <th>Transaction Mode</th>
+                
+              </tr>
+            </thead>
+            <tbody>         
+              <tr>
+                <td >
+                  <%= label_tag params[:transaction_type] %></td>
+                </td>
+                <td><%= label_tag params[:transaction_mode] %></td>
+                </td>
+                
+              </tr> 
+    
+             </tbody>
+  </table>
+        <%= hidden_field_tag "client_id", @client.id %>
+
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+        <table class="table table-striped table-bordered table-condensed table-hover table-responsive text-center">
+            <thead>
+              <tr>
+                <th>Scheme Name(s)</th>
+                <th>Option</th>
+                <th>Option Dividend</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+           <% amount = 0 %>
+        <% params[:transactions].each do |transaction| %>
+
+      <tr class="row_to_clone">
+        <td class="text-left" ><%= label_tag transaction["fund"] %></td>
+        <td><%= label_tag transaction["fund_option"] %></td>
+        <td><% if transaction["fund_option"] == "Dividend" %> <%= label_tag transaction["fund_option_div"] %> <% end %></td>
+        <td><%= label_tag transaction["amount"] %></td> 
+        <% amount = amount + transaction["amount"].to_f %>
+      </tr>
+              <% end %>
+
+      <tr>
+         <td colspan ="2"></td>
+        <td > Total Amount: </td>
+        <td >  <%= amount %> </td>
+      </tr>
+
+             </tbody>
+
+            </table>
+
+
+       <p class="smallfont"><input type="checkbox" name="" value="" checked disabled > I / We have read the Offer Document / Scheme Information Document / Statement of Additional Information / WIFS T&amp;C before making the investment.</p> 
+       <%= hidden_field_tag "transaction_ids[]", @transaction_ids %>
+       <%= @transaction_ids %>
+        <div class="actions text-right">
+            <%= link_to "Cancel", invest_dashboards_path(:client_id => params[:client_id]) %>
+
+          
+            <%= button_to("Confirm", {:controller => "dashboards", :action => "success", :transaction_ids => @transaction_ids}, :class => 'btn btn-primary')%> 
+         </div>
+
+     
+
+ </div>
+ <div class="col-sm-2"></div>
+            </div>
+        </section>
+        
+       
+
+          <%= render "layouts/footer" %>
+
+    <!-- / END page #wrapper -->
+    </div>
+
+<%= content_for :howitworks_js do %>
+    <!-- ========== Load our scripts - keep positioned at the end of your document ========== -->
+
+    <script src="/assets/bootstrap.min.js"></script><!-- Bootstrap core - always load first -->
+    <script src="/assets/wow.min.js"></script><!-- WoW animations -->
+    <script src="/assets/jquery.nav.js"></script><!-- Left-hand bullet navigation -->
+    <script src="/assets/jquery.nicescroll.min.js"></script><!-- Scrollbars for whole page and main navigation -->
+    <script src="/assets/jquery.easing.min.js"></script><!-- Easing plugin, for opacity fade on menu background images -->
+    <script src="/assets/owl.carousel.min.js"></script><!-- Owl carousel/slider -->
+    <script src="/assets/scripts.js"></script><!-- Custom JS functions - always load last -->
+
+    <!-- Page-specific JS functions - these are functions that only occur on this specific page, so we DON'T want these placed in our scripts.js file as this file is loaded on every page for global site functions. -->
+
+    <!-- Initialize Owl carousel/slider with desired settings - see http://owlgraphic.com/owlcarousel/#how-to for more options -->
+  
+
+
+<% end %>
+
+
+
+
