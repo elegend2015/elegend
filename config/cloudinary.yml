@@ -1,4 +1,18 @@
+development:
+  cloud_name: "dltaptcwo"
+  api_key: "654614522144542"
+  api_secret: "211yIus_Eiunh5xL_300YuGsqCg"
+  enhance_image_tag: true
+  static_image_support: false
 production:
   cloud_name: "dltaptcwo"
   api_key: "654614522144542"
   api_secret: "211yIus_Eiunh5xL_300YuGsqCg"
+  enhance_image_tag: true
+  static_image_support: false
+test:
+  cloud_name: "dltaptcwo"
+  api_key: "654614522144542"
+  api_secret: "211yIus_Eiunh5xL_300YuGsqCg"
+  enhance_image_tag: true
+  static_image_support: false
