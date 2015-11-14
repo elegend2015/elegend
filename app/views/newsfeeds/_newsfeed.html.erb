@@ -2,8 +2,8 @@
 <article class="post">
 	<div class="post-date-wrapper">
     	<div class="post-date">
-        	<div class="day"><%= newsfeed.created_at.strftime("%d") %></div>
-        	<div class="month"><%= newsfeed.created_at.strftime("%b %Y") %></div>
+        	<div class="day"><%= newsfeed.updated_at.strftime("%d") %></div>
+        	<div class="month"><%= newsfeed.updated_at.strftime("%b %Y") %></div>
         </div>
     </div>
     <div class="post-body">
@@ -12,9 +12,14 @@
         <p><%= image_tag newsfeed.image_url %>
         	<%= newsfeed.post %></p>
         <div class="post-info">
-            <span class= "text-capitalize">Posted by: <strong><%= current_user.first_name %> <%= current_user.last_name %></strong></span>
-            
-            <%= link_to "View More", newsfeed_path(:id), class: "btn btn-inverse" %>
+            <span class= "text-capitalize">Posted by:
+                <% post_by = User.find(newsfeed.user_id) %>
+             <strong><%= post_by.first_name %> <%= post_by.last_name %></strong></span>
+
+            <%= link_to "View More", newsfeed_path(newsfeed.id), class: "btn btn-inverse" %>
+            <% if current_user == post_by %>
+            <%= link_to "Edit", edit_newsfeed_path(newsfeed.id), class: "btn btn-inverse" %>
+            <% end %>
             
         </div>
     </div>

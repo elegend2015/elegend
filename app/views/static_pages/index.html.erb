@@ -23,8 +23,7 @@
     <div class="container hidden-xs">
     	<div class="header-title">
         	<div class="pull-left">
-        		<h1><a href="index.html"><span class="text-primary">e</span>Legend</a></h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+        <h1><a href="index.html"><span class="text-primary">e</span>Legend</a></h1>
             </div>
         </div>
     </div>
@@ -44,8 +43,7 @@
                     	<ul class="brands brands-sm brands-inline brands-circle">
                     		<li><a href=""><i class="fa fa-facebook"></i></a></li>
                             <li><a href=""><i class="fa fa-twitter"></i></a></li>
-                            <li><a href=""><i class="fa fa-twitch"></i></a></li>
-                            <li><a href=""><i class="fa fa-steam"></i></a></li>
+                            <li><a href=""><i class="fa fa-google-plus"></i></a></li>
                         </ul>
                     </div>
                     <div id="toggle-collapse" class="panel-collapse collapse">
@@ -175,12 +173,13 @@
 <div class="box">
     <h4>share your thoughts: </h4>
 
-    <%= form_for Newsfeed.new, :html => {:multipart => true}, authenticity_token: true, :remote => true do |f| %>
+    <%= form_for Newsfeed.new, :html => {:multipart => true}, authenticity_token: true do |f| %>
+            <%= f.hidden_field :user_id, value: current_user.id %>
         <div class="form-group">
-            <%= f.text_field :feed_title, class: "form-control" %>
+            <%= f.text_field :feed_title, class: "form-control", required: true %>
         </div>
         <div class="form-group">
-            <%= f.text_area :post, class: "form-control", rows: "6" %>
+            <%= f.text_area :post, class: "form-control", required: true, rows: "6" %>
         </div>
         <div class="form-group">
             <%= f.file_field :image, class: "form-control" %>

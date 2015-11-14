@@ -2,7 +2,7 @@ class StaticPagesController < ApplicationController
   
   def index
     @feeds = Newsfeed.all
-    @feeds = Newsfeed.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
+    @feeds = Newsfeed.paginate(:page => params[:page], :per_page => 10).order('updated_at DESC')
   end
 
   def profile

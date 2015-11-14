@@ -15,5 +15,14 @@ class UserDetailsController < ApplicationController
 		redirect_to :back
 
 	end
+
+	def update_pic
+		@user = current_user
+		@user.profile_pic = params[:profile_pic]
+		@user.save
+      	redirect_to :back
+	end
+
+	
 	
 end

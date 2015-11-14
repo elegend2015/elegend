@@ -1080,6 +1080,11 @@ article.post-single .post-body .gallery-page {
 	margin-left:5px;
 }
 
+#profile_img img {
+	max-width: 200px;
+	max-height: 200px;
+}
+
 /*------------------------------
 	GALLERY
 ------------------------------*/

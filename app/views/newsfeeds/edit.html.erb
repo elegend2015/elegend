@@ -17,36 +17,28 @@
 
 <% end %>  
 
-
 <div class="container">
     <section class="content-wrapper">
         <div class="row">
-			<div class="col-sm-12">
+            <div class="col-sm-12">
                 <div class="box">
-<article class="post">
-	<div class="post-date-wrapper">
-    	<div class="post-date">
-        	<div class="day"><%= @newsfeed.created_at.strftime("%d") %></div>
-        	<div class="month"><%= @newsfeed.created_at.strftime("%b %Y") %></div>
-        </div>
-    </div>
-    <div class="post-body">
-        <h2><%= @newsfeed.feed_title %></h2>
+    <h4>Edit your thoughts: </h4>
 
-        <p><%= image_tag @newsfeed.image_url %>
-        	<%= @newsfeed.post %></p>
-        <div class="post-info">
-            <p class= "text-capitalize">Posted by:
-                <% post_by = User.find(@newsfeed.user_id) %>
-            <strong><%= post_by.first_name %> <%= post_by.last_name %></strong></p>
+    <%= form_for @newsfeed, :html => {:multipart => true}, authenticity_token: true do |f| %>
+            <%= f.hidden_field :user_id, value: current_user.id %>
+        <div class="form-group">
+            <%= f.text_field :feed_title, class: "form-control", required: true %>
         </div>
-    </div>
-</article>
-				</div>
-				<%= link_to "Back", index_path, class: "btn btn-inverse" %>
-            <% if current_user == post_by %>
-            <%= link_to "Edit", edit_newsfeed_path(@newsfeed.id), class: "btn btn-inverse" %>
-            <% end %>
+        <div class="form-group">
+            <%= f.text_area :post, class: "form-control", required: true, rows: "15" %>
+        </div>
+        <div class="form-group">
+            <%= f.file_field :image, class: "form-control" %>
+        </div>
+        <%= link_to "Cancel", index_path, class: "btn btn-primary" %>
+            <%= f.submit "Update", class: "btn btn-primary" %>
+    <% end %>
+                </div>
 			</div>
 		</div>
 	</section>

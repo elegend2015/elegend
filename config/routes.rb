@@ -42,6 +42,7 @@ end
 resources :user_details do 
   collection do
     post :update_user
+    post :update_pic
   end
 end
 
