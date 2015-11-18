@@ -19,6 +19,10 @@ class StaticPagesController < ApplicationController
   	render :layout => 'demo'
   end
 
-
+  def gallery
+    #@user_id = current_user.id
+    #@pictures = Gallery.find_by_id(params[id: :user_id])
+    @pictures = Gallery.all
+  end
   
 end

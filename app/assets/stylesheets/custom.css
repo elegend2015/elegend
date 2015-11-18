@@ -419,9 +419,14 @@ header.navbar .navbar-buttons .navbar-icon {
 	border-color:#464646;
 	color:#FFFFFF;
 }
+.navbar-nav li img {
+	margin-top: 7px;
+	width: 40px;
+	height: 40px
+}
 
 .header-title {
-	padding:60px 0 0;
+	padding:30px 0 0;
 	text-shadow:2px 2px 1px rgba(0,0,0,0.5);
 }
 

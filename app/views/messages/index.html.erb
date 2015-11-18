@@ -1,4 +1,4 @@
-<%= content_for :profile_css do %>
+<%= content_for :general_css do %>
     <link href="/assets/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="/assets/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="/assets/animate.css" rel="stylesheet" type="text/css">
@@ -47,6 +47,7 @@
 </div>
 <div class="pad-top1">
 <%= form_for Message.new, :remote => true do |f| %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.text_area :content, class: "form-control", rows: "4", required: "true" %><br>
   <%= f.submit "Send", class: "btn btn-primary" %>
 <% end %>
@@ -57,7 +58,7 @@
     </section>
 </div>
    
-<%= content_for :profile_js do %>       
+<%= content_for :general_js do %>       
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="/assets/bootstrap.min.js"></script>
     <script src="/assets/owl.carousel.js"></script>

@@ -23,6 +23,12 @@ class UserDetailsController < ApplicationController
       	redirect_to :back
 	end
 
-	
+	def gallery_pic
+		@gpic = Gallery.new
+		@gpic.user_id = current_user.id
+		@gpic.pic = params[:pic]
+		@gpic.save
+      	redirect_to :back
+	end
 	
 end

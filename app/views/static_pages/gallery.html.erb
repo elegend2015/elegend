@@ -24,7 +24,7 @@
     <div class="container hidden-xs">
     	<div class="header-title">
         	<div class="pull-left">
-        		<h1><a href="/"><span class="text-primary">P</span>rofile</a></h1>
+        		<h1><a href="index.html"><span class="text-primary">G</span>allery</a></h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
             </div>
         </div>
@@ -171,157 +171,6 @@
     =========================== -->
     <div class="container">
         <section class="content-wrapper">
-<div class="row">
-    <div class="col-sm-12">
-        <div class="box">                        
-            <!-- TEAM MEMBER - START -->   
-            <div class="team-member single">
-                <div class="row" id="profile_img">
-                    <div class="col-sm-4 col-md-3">
-                        <%= image_tag current_user.profile_pic_url, class: "img-responsive img-circle center-block" %> 
-
-<%= form_tag update_pic_user_details_path, :multipart => true, :method=>'post' do %>
-        
-        <div class="form-group"> 
-            
-            <%= file_field_tag  "profile_pic" %>
-        </div>
-        <div class="form-group"> 
-            
-           <%= submit_tag "update" , class: "btn btn-primary" %>
-        </div>
-<% end %>
-
-
-
-
-                        <ul class="brands brands-tn brands-circle brands-colored brands-inline text-center">
-                            <li><a href="https://www.facebook.com/pixelized.cz" target="_blank" class="brands-facebook"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="https://twitter.com/Pixelizedcz" target="_blank" class="brands-twitter"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="https://plus.google.com/+PixelizedCz/" target="_blank" class="brands-google-plus"><i class="fa fa-google-plus"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-8 col-md-9">
-                        <h2>Player nickname<small><%= current_user.first_name %></small></h2>
-                        <ul class="list-unstyled">
-                            <li><strong>Member since:</strong><%= current_user.created_at %></li>
-                            <li><strong>Team:</strong><a href="gaming-team.html">Ninjas in Pyjamas</a></li>
-                            <li><strong>Position:</strong>team leader</li>
-                            <li><strong>Email:</strong><%= current_user.email %></li>
-                        </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam auctor dictum nibh, ac gravida orci porttitor et. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam posuere magna a dapibus luctus.</p>
-                    </div>
-                </div>
-            </div>
-            <!-- TEAM MEMBER - END --> 
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-sm-4">
-        <div class="box">
-      <ul class="nav nav-tabs nav-stacked" role="tablist">
-        <li role="presentation" class="active"><a href="#contact_info" aria-controls="contact_info" role="tab" data-toggle="tab">Contact Information</a></li>
-        <li role="presentation"><a href="#personal_info" aria-controls="personal_info" role="tab" data-toggle="tab">Personal Information</a></li>
-        <li role="presentation"><a href="#gamer" aria-controls="gamer" role="tab" data-toggle="tab">Gamer Information</a></li>
-        <li role="presentation"><a href="#channel" aria-controls="channel" role="tab" data-toggle="tab">Channel Section</a></li>
-        <li role="presentation"><a href="#friend" aria-controls="friend" role="tab" data-toggle="tab">Friends</a></li>
-      </ul>
-        </div>
-    </div>
-    <div class="col-sm-8">
-        <div class="box">
-            <div class="tab-content">
-                <div role="tabpanel" class="tab-pane fade in active" id="contact_info">
-                    <div class="row">
-                        <div class="col-sm-11">
-                    <h5>Address: <%= current_user.addr %></h5>
-                    <h5>Phone: <%= current_user.phone %></h5>
-                    <h5>Email: <%= current_user.email %></h5>
-                        </div>
-                        <div class="col-sm-1">
-                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModalContact">Edit</button>
-                        </div>
-                    </div>
-                </div>
-                <div role="tabpanel" class="tab-pane fade" id="personal_info">
-                    <div class="row">
-                        <div class="col-sm-11">
-                    <h5>Gender: <%= current_user.gender %></h5>
-                    <h5>Status: <%= current_user.status %></h5>
-                    <h5>About: <%= current_user.about %></h5>
-                        </div>
-                        <div class="col-sm-1">
-                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModalContact">Edit</button>
-                        </div>
-                    </div>
-                </div>
-                <div role="tabpanel" class="tab-pane fade" id="gamer">
-                    <div class="box">
-                        <% @genres.each do |genre| %>
-                            <h5>Name: <%= genre.name %></h5>
-                            <h5>Description: <%= genre.description %></h5>
-                            <br>
-                        <% end %>
-                    </div>
-                </div>
-                <div role="tabpanel" class="tab-pane fade" id="channel">
-                    <div class="box">
-                        <% @channels.each do |channel| %>
-                            <h5>Name: <%= channel.name %></h5>
-                            <h5>Description: <%= channel.description %></h5>
-                            <h5>Channel Type: <%= channel.channel_type %></h5>
-                            <br>
-                        <% end %>
-                    </div>
-                </div>
-                <div role="tabpanel" class="tab-pane fade" id="friend">
-                    <div class="box">
-                        <div class="box  config">
-                        <p>
-                            <% for user in @users %>
-                                <%= user.first_name %> <%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post%><br>
-                           <% end %>
-
-                        </p>
-                    </div>
-
-                    <div class="box  config">
-                        <p>
-                            <h2>Friends</h2>
-                        <ul>
-                          <% for friendship in current_user.friendships %>
-                            <li>
-                              <%=h friendship.friend.first_name %>
-                              (<%= link_to "remove", friendship, :method => :delete %>)
-                            </li>
-                          <% end %>
-                        </ul>
-
-                        </p>
-                    </div>
-
-                    <div class="box  config">
-                        
-                         <!-- <p><%= link_to "Find Friends", profile_path %></p> -->
-
-                        <h2>Friended by Users</h2>
-                        <ul>
-                          <% for user in current_user.inverse_friends %>
-                            <li><%=h user.first_name %></li>
-                          <% end %>
-                        </ul>
-
-                    </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-
         	<div class="row">
             
             	<!-- SIDEBAR - START -->
@@ -341,7 +190,7 @@
                     <!-- SIDEBAR BOX - END -->
                     
                     <!-- SIDEBAR BOX - START -->
-                    <!-- <div class="box sidebar-box widget-wrapper widget-matches">
+                    <div class="box sidebar-box widget-wrapper widget-matches">
                     	<h3>Upcoming matches <a href="matches-list.html" class="btn btn-primary pull-right btn-sm">All matches</a></h3>
                         
                         <a href="match-single.html">
@@ -391,11 +240,11 @@
                                 </tbody>
                             </table>
                         </a>
-                    </div> -->
+                    </div>
                     <!-- SIDEBAR BOX - END -->
                     
                     <!-- SIDEBAR BOX - START -->
-                    <!-- <div class="box sidebar-box widget-wrapper widget-matches">
+                    <div class="box sidebar-box widget-wrapper widget-matches">
                         <h3>Latest matches <a href="matches-list.html" class="btn btn-primary pull-right btn-sm">All matches</a></h3>
                         
                         <a href="match-single.html">
@@ -445,11 +294,11 @@
                                 </tbody>
                             </table>
                         </a>
-                    </div> -->
+                    </div>
                     <!-- SIDEBAR BOX - END -->
                     
                     <!-- SIDEBAR BOX - START -->
-                    <!-- <div class="box sidebar-box widget-wrapper">
+                    <div class="box sidebar-box widget-wrapper">
                     	<h3>Categories</h3>
                         <ul class="nav nav-sidebar">
                         	<li><a href="#">Tournaments<span>45</span></a></li>
@@ -459,12 +308,12 @@
                             <li><a href="#">World of Warcraft<span>112</span></a></li>
                             <li><a href="#">Minecraft<span>18</span></a></li>
                         </ul>
-                    </div> -->
+                    </div>
                     <!-- SIDEBAR BOX - END -->
                     
                     <!-- SIDEBAR BOX - START -->
                     <div class="box sidebar-box widget-wrapper">
-                    	<h3>Latest News</h3>
+                    	<h3>Latest Tweets</h3>
                         <div id="twitter-wrapper">
                         </div>
                     </div>
@@ -475,192 +324,106 @@
                 
                 <!-- CONTENT BODY - START -->
                 <div class="col-sm-8">
-                	
-                    
-                    <!-- <div class="box  config">
-                        <% @genres.each do |genre| %>
-                            <%= genre.name %>
-                            
+                	<div class="box">
+                        <% for img in @pictures %>
+                        <%= image_tag img.pic_url, class: "img-responsive img-thumbnail" %>
                         <% end %>
-                    </div> -->
-
-                    <div class="box  config">
-                        <div class="row">
-                            <div class="col-sm-6">
-
-    
+<%= form_tag gallery_pic_user_details_path, :multipart => true, :method=>'post' do %>
+        
+        <div class="form-group"> 
+            
+            <%= file_field_tag  "pic" %>
+        </div>
+        <div class="form-group"> 
+            
+           <%= submit_tag "update" , class: "btn btn-primary" %>
+        </div>
+<% end %>                                   
+                        <!-- GALLERY POST - START -->
+                        <article class="post gallery-post">
+                            <div class="row gallery-page">
+                                <div class="col-sm-12">
+                                    <h2>Pellentesque habitant morbi tristique senectus<small>6/2/2014</small></h2>
+                                </div>
+                                <div class="col-md-4 col-xs-6">
+                                	<a href="/assets/image_001.jpg"><img src="/assets/image_001.jpg" class="img-responsive" alt=""></a>
+                                </div>
+                                <div class="col-md-4 col-xs-6">
+                                	<a href="/assets/image_002.jpg"><img src="/assets/image_002.jpg" class="img-responsive" alt=""></a>
+                                </div>
+                                <div class="col-md-4 col-xs-6">
+                                	<a href="/assets/image_003.jpg"><img src="/assets/image_003.jpg" class="img-responsive" alt=""></a>
+                                </div>											                                                
                             </div>
-                            <div class="col-sm-6">
-                                
-                            </div>
-                        </div>
-                    </div>                    
-
-                    
-
-                    <div class="box colored config">
-                    	<p>Here you can download player's config. <a href="" class="btn btn-simple">Download</a></p>
-                    </div>
-                    
-                    <!-- <div class="box hardware">
-                    	<h2>Hardware</h2>
-                        <div class="row">
-                            <div class="col-md-6">
-                            	<div class="team-member">
-                                    <ul class="list-unstyled">
-                                        <li><strong>CPU</strong>Lorem ipsum dolor sit amet</li>
-                                        <li><strong>GPU:</strong>Lorem ipsum dolor sit amet</li>
-                                        <li><strong>RAM:</strong>Lorem ipsum dolor sit amet</li>
-                                        <li><strong>Screen:</strong>Lorem ipsum dolor sit amet</li>
-                                        <li><strong>Headset</strong>Lorem ipsum dolor sit amet</li>
-                                        <li><strong>Keyboard:</strong>Lorem ipsum dolor sit amet</li>
-                                        <li><strong>Mouse:</strong>Lorem ipsum dolor sit amet</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            
-                            <div class="col-md-6">
-                                <img src="/assets/pc.jpg" class="img-responsive center-block" alt="">
-                            </div>	
-                        </div>
-                    </div> -->
-                    
-                    <div class="box profile-gallery">
-                    	<h2>Profile gallery</h2>
-                        <div class="gallery-page">
-                            <div class="row">
-                                <div class="col-md-4 col-xs-6">
-                                    <a href="/assets/image_001.jpg"><img src="/assets/image_001.jpg" class="img-responsive" alt=""></a>
+                            <a href="gallery-single.html" class="btn btn-inverse">View More</a>
+                        </article>
+                        <!-- GALLERY POST - END -->
+                        
+                        <!-- GALLERY POST - START -->
+                        <article class="post gallery-post">
+                            <div class="row gallery-page">
+                                <div class="col-sm-12">
+                                    <h2>Et netus et malesuada fames ac turpis egestas<small>4/11/2014</small></h2>
                                 </div>
                                 <div class="col-md-4 col-xs-6">
-                                    <a href="/assets/image_002.jpg"><img src="/assets/image_002.jpg" class="img-responsive" alt=""></a>
+                                	<a href="/assets/image_001.jpg"><img src="/assets/image_001.jpg" class="img-responsive" alt=""></a>
                                 </div>
                                 <div class="col-md-4 col-xs-6">
-                                    <a href="/assets/image_003.jpg"><img src="/assets/image_003.jpg" class="img-responsive" alt=""></a>
+                                	<a href="/assets/image_002.jpg"><img src="/assets/image_002.jpg" class="img-responsive" alt=""></a>
                                 </div>
                                 <div class="col-md-4 col-xs-6">
-                                    <a href="/assets/image_004.jpg"><img src="/assets/image_004.jpg" class="img-responsive" alt=""></a>
+                                	<a href="/assets/image_003.jpg"><img src="/assets/image_003.jpg" class="img-responsive" alt=""></a>
                                 </div>
                                 <div class="col-md-4 col-xs-6">
-                                    <a href="/assets/image_005.jpg"><img src="/assets/image_005.jpg" class="img-responsive" alt=""></a>
+                                	<a href="/assets/image_004.jpg"><img src="/assets/image_004.jpg" class="img-responsive" alt=""></a>
+                                </div>
+                                <div class="col-md-4 col-xs-6">
+                                	<a href="/assets/image_005.jpg"><img src="/assets/image_005.jpg" class="img-responsive" alt=""></a>
                                 </div>	
+                                <div class="col-md-4 col-xs-6">
+                                	<a href="/assets/image_006.jpg"><img src="/assets/image_006.jpg" class="img-responsive" alt=""></a>
+                                </div>										                                                
                             </div>
-                        </div>
+                            <a href="gallery-single.html" class="btn btn-inverse">View More</a>
+                        </article>
+                        <!-- GALLERY POST - END -->
+                        
+                        <!-- GALLERY POST - START -->
+                        <article class="post gallery-post">
+                            <div class="row gallery-page">
+                                <div class="col-sm-12">
+                                    <h2>Nullam posuere magna a dapibus luctus.<small>12/9/2014</small></h2>
+                                </div>
+                                <div class="col-md-4 col-xs-6">
+                                	<a href="/assets/image_001.jpg"><img src="/assets/image_001.jpg" class="img-responsive" alt=""></a>
+                                </div>
+                                <div class="col-md-4 col-xs-6">
+                                	<a href="/assets/image_004.jpg"><img src="/assets/image_004.jpg" class="img-responsive" alt=""></a>
+                                </div>	
+                                <div class="col-md-4 col-xs-6">
+                                	<a href="/assets/image_006.jpg"><img src="/assets/image_006.jpg" class="img-responsive" alt=""></a>
+                                </div>										                                                
+                            </div>
+                            <a href="gallery-single.html" class="btn btn-inverse">View More</a>
+                        </article>
+                        <!-- GALLERY POST - END -->
+                        
                     </div>
-                    
-                    <!-- <div class="row">
-                    	<div class="col-md-6">
-                            <div class="box sidebar-box widget-wrapper">
-                                <h3>Last comments</h3>
-                                <ul class="nav nav-sidebar">
-                                    <li><a href="#">Lorem ipsum dolor sit<span>3/2/2015</span></a></li>
-                                    <li><a href="#">consectetur adipiscing<span>3/2/2015</span></a></li>
-                                    <li><a href="#">Nam auctor dictum<span>3/2/2015</span></a></li>
-                                </ul>
-                            </div>
-                    	</div>
-                        
-                        <div class="col-md-6">
-                            <div class="box sidebar-box widget-wrapper">
-                                <h3>Last forum posts</h3>
-                                <ul class="nav nav-sidebar">
-                                    <li><a href="#">Lorem ipsum dolor sit<span>3/2/2015</span></a></li>
-                                    <li><a href="#">consectetur adipiscing<span>3/2/2015</span></a></li>
-                                    <li><a href="#">Nam auctor dictum<span>3/2/2015</span></a></li>
-                                </ul>
-                            </div>
-                    	</div>
-                    </div>  -->
-                    
-                    <div class="box">
-                        
-                        <!-- COMMENT FORM - END --> 
-                        <div id="respond" class="comment-respond">
-							<h3 id="reply-title" class="comment-reply-title">Write a comment</h3>
-							<form method="post" id="commentform" class="comment-form">
-                                <div class="form-group comment-form-author">
-                                    <label for="author">Name<span class="required">*</span></label>
-                                    <input class="form-control" id="author" name="author" type="text" value="">
-                                </div>
-                                <div class="form-group comment-form-email">
-                                    <label for="email">Email<span class="required">*</span></label>
-                                    <input class="form-control" id="email" name="email" type="email" value="">
-                                </div>
-								<div class="form-group comment-form-comment">
-                                    <label for="comment">Comment<span class="required">*</span></label>
-                                    <textarea class="form-control" id="comment" name="comment" aria-required="true"></textarea>
-                                </div>												
-								<button class="btn btn-primary" type="submit">Submit</button>					
-                        	</form>
-						</div>
-                        <!-- COMMENT FORM - END -->  
-                        
-                	</div>
                 </div>
                 <!-- CONTENT BODY - END -->
                 
             </div>
         </section>
     </div>
-    <!-- ==========================
-    	CONTENT - END 
-    =========================== -->
-   
-   <!-- Button trigger modal -->
 
-
-<!-- Modal Contact & Personal Information -->
-<div class="modal fade" id="myModalContact" tabindex="-1" role="dialog" aria-labelledby="myModalLabelContact">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabelContact">Contact and Personal Information</h4>
-      </div>
-      <div class="modal-body">
-        <%= form_tag(update_user_user_details_path, :method=>'post') do %>
-        <div class="form-group"> 
-            <%= label_tag 'addr', 'Address' %>
-            <%= text_field_tag 'addr', current_user.addr, class: "form-control" %>
-        </div>
-        <div class="form-group"> 
-            <%= label_tag 'phone', 'Phone' %>
-            <%= text_field_tag 'phone', current_user.phone, class: "form-control" %>
-        </div>
-        <div class="form-group"> 
-            <%= label_tag 'gender', 'Gender' %>
-            <%= text_field_tag 'gender', current_user.gender, class: "form-control" %>
-        </div>
-        <div class="form-group"> 
-            <%= label_tag 'status', 'Status' %>
-            <%= text_field_tag 'status', current_user.status, class: "form-control" %>
-        </div>
-        <div class="form-group"> 
-            <%= label_tag 'about', 'About' %>
-            <%= text_area_tag 'about', current_user.about, class: "form-control" %>
-        </div>
-        <div class="form-group"> 
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-           <%= submit_tag "Save" , class: "btn btn-primary" %>
-        </div>
-        <% end %>
-      </div>
-      <!-- <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div> -->
-    </div>
-  </div>
-</div>
-
-<%= content_for :general_js do %>       
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script src="/assets/bootstrap.min.js"></script>
-    <script src="/assets/owl.carousel.js"></script>
-    <script src="/assets/jquery.magnific-popup.min.js"></script>
-    <script src="/assets/creative-brands.js"></script>
-    <script src="/assets/jquery.vegas.min.js"></script>
-    <script src="/assets/twitterFetcher_min.js"></script>
-    <script src="/assets/jquery.countdown.min.js"></script>
-    <script src="/assets/custom.js"></script>
+<%= content_for :general_js do %>     
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="/assets/bootstrap.min.js"></script>
+<script src="/assets/owl.carousel.js"></script>
+<script src="/assets/jquery.magnific-popup.min.js"></script>
+<script src="/assets/creative-brands.js"></script>
+<script src="/assets/jquery.vegas.min.js"></script>
+<script src="/assets/twitterFetcher_min.js"></script>
+<script src="/assets/jquery.countdown.min.js"></script>
+<script src="/assets/custom.js"></script>
 <% end %>

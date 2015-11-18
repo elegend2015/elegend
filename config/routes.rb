@@ -24,6 +24,7 @@ Rails.application.routes.draw do
    resources :friendships
   match '/index', to: 'static_pages#index', via: 'get', as: :index
   match '/profile', to: 'static_pages#profile', via: [:get, :post], as: :profile
+  match '/gallery', to: 'static_pages#gallery', via: [:get, :post], as: :gallery
   match '/terms-of-service', to: 'static_pages#terms_of_service', via: 'get', as: :terms_of_service
   match '/demo', to: 'static_pages#demo', via: 'get', as: :demo
   
@@ -43,6 +44,7 @@ resources :user_details do
   collection do
     post :update_user
     post :update_pic
+    post :gallery_pic
   end
 end
 

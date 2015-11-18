@@ -20,6 +20,7 @@
     <!-- ==========================
     	TITLE - START 
     =========================== -->
+    <% if current_user.email == "priyankodey01@gmail.com" %>
     <div class="container hidden-xs">
     	<div class="header-title">
         	<div class="pull-left">
@@ -27,6 +28,7 @@
             </div>
         </div>
     </div>
+    <% end %>
     <!-- ==========================
     	TITLE - END 
     =========================== -->
@@ -350,5 +352,5 @@
 <script src="assets/jquery.vegas.min.js"></script>
 <script src="assets/twitterFetcher_min.js"></script>
 <script src="assets/jquery.countdown.min.js"></script>
-<script src="assets/custom.js"></script>
+<script src="/assets/custom.js"></script>
 <% end %>
