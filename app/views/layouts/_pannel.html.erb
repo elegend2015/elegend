@@ -1,0 +1,47 @@
+<div class="container">
+	<div class="jumbotron">
+
+    	<div class="jumbotron-panel">
+            <div class="row">
+                <div class="col-sm-9">
+<% if current_user.email == "priyankodey01@gmail.com" %>
+    <%= form_tag pannel_pic_user_details_path, :multipart => true, :method=>'post', class: "form-inline" do %>
+        <div class="form-group"> 
+            <%= text_field_tag  "pannel_title", nil, class: "form-control", placeholder: "Title" %>
+        </div>
+        <div class="form-group"> 
+            <%= file_field_tag  "pannel_img", class: "form-control" %>
+        </div>
+        <div class="form-group"> 
+           <%= submit_tag "Add" , class: "btn btn-primary" %>
+        </div>
+    <% end %>
+<% else %>
+    <p class="text-primary"><strong>New Release</strong></p>
+<% end %>
+                </div>
+                <div class="col-sm-3 text-right">
+<ul class="brands brands-sm brands-inline brands-circle">
+    <li><a href=""><i class="fa fa-facebook"></i></a></li>
+    <li><a href=""><i class="fa fa-twitter"></i></a></li>
+    <li><a href=""><i class="fa fa-google-plus"></i></a></li>
+</ul>
+                </div>
+            </div>                 
+        </div>
+            
+        <div id="jumbotron-slider">    
+<% for p in @pannels %>
+    <div class="item">
+        <div class="overlay-wrapper">
+            <%= image_tag p.pannel_img_url, class: "img-responsive" %>
+            <span class="overlay"></span>
+            <h2><%= p.pannel_title %><span><%= p.created_at.strftime("%d %b %Y") %></span></h2>
+        </div>
+         <%= link_to 'Remove', del_pannel_pic_user_details_path(p.id), data: { confirm: 'Are you sure?' }, :method => :put %>
+    </div>
+<% end %>                             
+        </div>
+
+    </div>
+</div>

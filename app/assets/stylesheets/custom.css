@@ -2439,3 +2439,9 @@ only screen and (max-width: 767px) {
 	max-height: 18em;
 	overflow-y: auto;
 }
+
+
+/* ##### index ###### */
+.item .overlay-wrapper img {
+	max-height: 250px;
+}

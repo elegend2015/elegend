@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class GalleryUploader < CarrierWave::Uploader::Base
+class PannelUploader < CarrierWave::Uploader::Base
 
 include Cloudinary::CarrierWave
 

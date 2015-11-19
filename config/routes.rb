@@ -45,6 +45,8 @@ resources :user_details do
     post :update_user
     post :update_pic
     post :gallery_pic
+    post :pannel_pic
+    put :del_pannel_pic
   end
 end
 
