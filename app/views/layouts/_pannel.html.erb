@@ -4,7 +4,7 @@
     	<div class="jumbotron-panel">
             <div class="row">
                 <div class="col-sm-9">
-<% if current_user.email == "priyankodey01@gmail.com" %>
+<% if current_user.id == 1 %>
     <%= form_tag pannel_pic_user_details_path, :multipart => true, :method=>'post', class: "form-inline" do %>
         <div class="form-group"> 
             <%= text_field_tag  "pannel_title", nil, class: "form-control", placeholder: "Title" %>
@@ -38,7 +38,9 @@
             <span class="overlay"></span>
             <h2><%= p.pannel_title %><span><%= p.created_at.strftime("%d %b %Y") %></span></h2>
         </div>
-         <%= link_to 'Remove', del_pannel_pic_user_details_path(p.id), data: { confirm: 'Are you sure?' }, :method => :put %>
+        <% if current_user.id == 1 %>
+            <%= link_to 'Remove', del_pannel_pic_user_details_path(p.id), data: { confirm: 'Are you sure?' }, :method => :put %>
+        <% end %>
     </div>
 <% end %>                             
         </div>
