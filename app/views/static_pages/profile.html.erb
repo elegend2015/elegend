@@ -25,7 +25,6 @@
     	<div class="header-title">
         	<div class="pull-left">
         		<h1><a href="/"><span class="text-primary">P</span>rofile</a></h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
             </div>
         </div>
     </div>
@@ -45,20 +44,7 @@
             <div class="team-member single">
                 <div class="row" id="profile_img">
                     <div class="col-sm-4 col-md-3">
-                        <%= image_tag current_user.profile_pic_url, class: "img-responsive img-circle center-block" %> 
-
-<%= form_tag update_pic_user_details_path, :multipart => true, :method=>'post' do %>
-        
-        <div class="form-group"> 
-            
-            <%= file_field_tag  "profile_pic" %>
-        </div>
-        <div class="form-group"> 
-            
-           <%= submit_tag "update" , class: "btn btn-primary" %>
-        </div>
-<% end %>
-
+                        <a href="#" data-toggle="modal" data-target="#ModalProfile"> <%= image_tag current_user.profile_pic_url, class: "img-responsive center-block" %> </a> 
 
 
 
@@ -72,11 +58,9 @@
                         <h2>Player nickname<small><%= current_user.first_name %></small></h2>
                         <ul class="list-unstyled">
                             <li><strong>Member since:</strong><%= current_user.created_at %></li>
-                            <li><strong>Team:</strong><a href="gaming-team.html">Ninjas in Pyjamas</a></li>
-                            <li><strong>Position:</strong>team leader</li>
                             <li><strong>Email:</strong><%= current_user.email %></li>
+                            <li><strong>Status:</strong><%= current_user.status %></li>
                         </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam auctor dictum nibh, ac gravida orci porttitor et. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam posuere magna a dapibus luctus.</p>
                     </div>
                 </div>
             </div>
@@ -473,7 +457,33 @@
     	CONTENT - END 
     =========================== -->
    
-   <!-- Button trigger modal -->
+<!-- Profile picture modal -->
+<div class="modal fade" id="ModalProfile" role="dialog" aria-labelledby="gridSystemModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+<%= form_tag update_pic_user_details_path, :multipart => true, :method=>'post' do %>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="gridSystemModalLabel">Update Profile Picture</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+        <div class="form-group"> 
+            <%= file_field_tag  "profile_pic", class: "form-control" %>
+        </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <%= submit_tag "update" , class: "btn btn-primary" %>
+      </div>
+<% end %>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 
 
 <!-- Modal Contact & Personal Information -->

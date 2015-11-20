@@ -1086,8 +1086,8 @@ article.post-single .post-body .gallery-page {
 }
 
 #profile_img img {
-	max-width: 200px;
-	max-height: 200px;
+	max-width: 160px;
+	max-height: 160px;
 }
 
 /*------------------------------
@@ -2440,8 +2440,24 @@ only screen and (max-width: 767px) {
 	overflow-y: auto;
 }
 
+/*.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}*/
 
 /* ##### index ###### */
 .item .overlay-wrapper img {
 	max-height: 250px;
 }
+
