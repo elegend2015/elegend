@@ -59,6 +59,7 @@ h4,
 h5, 
 h6 {
 	font-family: 'Titillium Web', sans-serif;
+	color: #9197a3;
 }
 
 .img-rounded {
@@ -1086,8 +1087,28 @@ article.post-single .post-body .gallery-page {
 }
 
 #profile_img img {
-	max-width: 160px;
-	max-height: 160px;
+	max-width: 120px;
+	max-height: 120px;
+}
+
+#profile-list .nav-tabs {
+    border-bottom: none;
+}
+
+#profile-list .nav-tabs>li.active>a, #profile-list .nav-tabs>li.active>a:focus, #profile-list .nav-tabs>li.active>a:hover {
+    color: #FF5F00;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-bottom-color: #ddd;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+#friend img {
+	width: 100px;
+	height: 100px;
 }
 
 /*------------------------------

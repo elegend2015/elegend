@@ -50,7 +50,14 @@
                     
                 </ul>
                 <ul class="nav navbar-nav pull-right">
-                    <li><%= image_tag current_user.profile_pic_url, class: "img-responsive img-circle center-block" %></li>
+                    <li>
+                        <% if current_user.profile_pic_url != nil %>
+                        <%= image_tag current_user.profile_pic_url, class: "img-responsive img-circle center-block" %>
+                        <% else %>
+                        <%= image_tag('profile-img.jpg', class: "img-responsive img-circle center-block") %>
+                        <% end %>
+
+                    </li>
                     <li><%= link_to(current_user.first_name , profile_path, method: :get) %></li>
                     <li><%= link_to 'Logout', destroy_user_session_path, class: "btn btn-inverse", :method => :delete %> </li>
                 </ul>
