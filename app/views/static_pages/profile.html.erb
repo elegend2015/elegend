@@ -217,17 +217,48 @@
                     <div class="box  config">
                         <h2>Friends</h2>
                         <div class="row">
-                            <% for friendship in current_user.friendships %>
-                            <div class="col-sm-3">
-                                <% if friendship.friend.profile_pic_url != nil %>
-                                    <%= image_tag friendship.friend.profile_pic_url, class: "img-responsive img-circle center-block img-thumbnail" %>
-                                    <% else %>
-                                    <%= image_tag('profile-img.jpg', class: "img-responsive img-circle center-block img-thumbnail") %>
-                                    <% end %>
-                                    <p><%=h friendship.friend.first_name %></p>
-                                    <p><%= link_to "Remove", friendship, :method => :delete %></p><br>
-                            </div>
-                            <% end %>
+        <% for f in @friends_all %>
+            <div class="col-sm-3">
+
+        <% ud = User.find(f.friend_id) %>
+        <% if ud.profile_pic_url != nil %>        
+            <%= image_tag ud.profile_pic_url, class: "img-responsive img-circle center-block img-thumbnail" %>
+        <% else %>
+            <%= image_tag('profile-img.jpg', class: "img-responsive img-circle center-block img-thumbnail") %>
+        <% end %>
+            <p><%=h ud.first_name %></p>
+    
+    
+        
+                                
+            </div>
+        <% end %>
+                        </div>
+                    </div>
+
+                    <div class="box  config">
+                        <h2>Friends Request sent</h2>
+                        <div class="row">
+        <% for f in @friends_rq_sent %>
+            <div class="col-sm-3">
+
+    <% ud = User.find(f.friend_id) %>
+        <% if ud.profile_pic_url != nil %>        
+            <%= image_tag ud.profile_pic_url, class: "img-responsive img-circle center-block img-thumbnail" %>
+        <% else %>
+            <%= image_tag('profile-img.jpg', class: "img-responsive img-circle center-block img-thumbnail") %>
+        <% end %>
+            <p><%=h ud.first_name %></p>
+    
+        <% if f.status = "1" %>
+            <p>Request sent</p>
+            <p><%= link_to "Remove", f, :method => :delete %></p><br>
+        <% else %>
+            <p><%= link_to "Remove", f, :method => :delete %></p><br>
+        <% end %>
+                                
+            </div>
+        <% end %>
                         </div>
                     </div>
 
@@ -244,7 +275,9 @@
                                     <% else %>
                                     <%= image_tag('profile-img.jpg', class: "img-responsive img-circle center-block img-thumbnail") %>
                                     <% end %>
-                                    <p><%=h user.first_name %></p><br>
+                                    <p><%=h user.first_name %></p><p><%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post%></p><br>
+                                    <%= button_to "Accept", friend_accept_friendships_path(:friend_id => user) %>
+                                    
                                 </div>
                             <% end %>
                         </div>

@@ -21,7 +21,11 @@ Rails.application.routes.draw do
   devise_scope :user do
     root to: "devise/sessions#new"
   end
-   resources :friendships
+resources :friendships do
+  collection do 
+    post :friend_accept 
+  end
+end
   match '/index', to: 'static_pages#index', via: 'get', as: :index
   match '/profile', to: 'static_pages#profile', via: [:get, :post], as: :profile
   match '/gallery', to: 'static_pages#gallery', via: [:get, :post], as: :gallery
@@ -45,6 +49,7 @@ resources :user_details do
     post :update_user
     post :update_pic
     post :gallery_pic
+    put :del_gallery_pic
     post :pannel_pic
     put :del_pannel_pic
   end

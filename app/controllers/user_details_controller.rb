@@ -31,6 +31,12 @@ class UserDetailsController < ApplicationController
       	redirect_to :back
 	end
 
+	def del_gallery_pic
+		@g_id = Gallery.find(params[:format])
+		@g_id.destroy!
+		redirect_to :back
+	end
+
 	def pannel_pic
 		@ppic = Pannel.new
 		@ppic.user_id = current_user.id
