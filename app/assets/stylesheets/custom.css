@@ -2156,9 +2156,9 @@ article.post-single .post-body .gallery-page {
 		padding:10px 15px 3px;
 	}
 	
-	.jumbotron-panel .btn {
+	/*.jumbotron-panel .btn {
 		display:none;
-	}
+	}*/
 	
 	.jumbotron-brands {
 		float:none;
@@ -2455,7 +2455,9 @@ only screen and (max-width: 767px) {
 .pad-bot12 {
 	padding-bottom: 12em
 }
-
+.pad-bot1 {
+	padding-bottom: 1em
+}
 .maxh18 {
 	max-height: 18em;
 	overflow-y: auto;

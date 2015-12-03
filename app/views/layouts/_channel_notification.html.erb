@@ -1,0 +1,9 @@
+<div class="box sidebar-box widget-wrapper">
+    <h3>Notifications</h3>
+    <ul class="nav nav-sidebar">
+    	<% @channels.each do |channel| %>
+        <li><%= link_to channel.name, channel_path(:id => channel.id) %></li>
+        <% end %>
+    </ul>
+</div>
+<!-- <li><a href="#">Minecraft<span>18</span></a></li> -->

@@ -3,7 +3,7 @@
 
     	<div class="jumbotron-panel">
             <div class="row">
-                <div class="col-sm-9">
+                <div class="col-sm-9 pad-bot1">
 <% if current_user.id == 1 %>
     <%= form_tag pannel_pic_user_details_path, :multipart => true, :method=>'post', class: "form-inline" do %>
         <div class="form-group"> 
@@ -21,11 +21,11 @@
 <% end %>
                 </div>
                 <div class="col-sm-3 text-right">
-<ul class="brands brands-sm brands-inline brands-circle">
+<!-- <ul class="brands brands-sm brands-inline brands-circle">
     <li><a href=""><i class="fa fa-facebook"></i></a></li>
     <li><a href=""><i class="fa fa-twitter"></i></a></li>
     <li><a href=""><i class="fa fa-google-plus"></i></a></li>
-</ul>
+</ul> -->
                 </div>
             </div>                 
         </div>

@@ -2,6 +2,7 @@ class StaticPagesController < ApplicationController
   
   def index
     @pannels = Pannel.all.order('created_at DESC')
+    @channels = Channel.all.order('created_at DESC')
     @feeds = Newsfeed.all
     @feeds = Newsfeed.paginate(:page => params[:page], :per_page => 10).order('updated_at DESC')
   end
@@ -27,6 +28,7 @@ class StaticPagesController < ApplicationController
 
   def gallery
     @pannels = Pannel.all.order('created_at DESC')
+    @channels = Channel.all.order('created_at DESC')
     #@user_id = current_user.id
     #@pictures = Gallery.find(params[:user_id => current_user.id])
     #@pictures = Gallery.find_by_user_id(current_user.id)
