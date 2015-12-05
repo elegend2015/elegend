@@ -18,7 +18,7 @@
 <%= csrf_meta_tags %>
 
 </head>
-<body>
+
 	
     <!-- ==========================
     	HEADER - START 
@@ -141,14 +141,19 @@
     <!-- ==========================
     	HEADER - END 
     =========================== --> 
+
 <% if notice %>
     <div class="container">
+        <div class="row notify">
+            <div class="col-sm-12">
         <p class="alert alert-success">
             <%= notice %>
         </p>
+            </div>
+        </div>
     </div>
 <% end %>
-
+<body>
 <%= yield %>
 
 <!-- ==========================

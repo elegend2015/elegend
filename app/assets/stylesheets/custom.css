@@ -2452,6 +2452,9 @@ only screen and (max-width: 767px) {
 .pad-top6 {
 	padding-top: 6em;
 }
+.pad-top11 {
+	padding-top: 11em;
+}
 .pad-bot12 {
 	padding-bottom: 12em
 }
@@ -2462,7 +2465,10 @@ only screen and (max-width: 767px) {
 	max-height: 18em;
 	overflow-y: auto;
 }
-
+.notify {
+	padding-top: 8em;
+	position: absolute;
+}
 /*.btn-file input[type=file] {
     position: absolute;
     top: 0;

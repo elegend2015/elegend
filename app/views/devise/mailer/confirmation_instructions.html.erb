@@ -1,5 +1,12 @@
-<p>Welcome <%= @email %>!</p>
+<p>Hello <%= @resource.first_name %>,</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>Welcome to eLEGEND! Thanks for registering on our website and you're only one click away from accessing the greatest gaming social network ever!</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p>Please click on this <%= link_to 'link', confirmation_url(@resource, confirmation_token: @token) %> to confirm your registration!</p>
+
+<p>Should you have any questions or need any help with our services, please send an email to support@elegend.net!</p>
+
+<p>Thanks again and looking forward to meet you online!</p>
+
+
+<p>Game on!</p>
