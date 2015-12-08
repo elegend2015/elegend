@@ -16,12 +16,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable, :omniauth_providers => [:facebook]
   
-  after_create :send_mail
+  #after_create :send_mail
   mount_uploader :profile_pic, ProfileUploader
   
-  def send_mail
-    UserMailer.registration_email(self).deliver
-  end
+  # def send_mail
+  #   UserMailer.registration_email(self).deliver
+  # end
 
     def self.all_except(user)
   		where.not(id: user)

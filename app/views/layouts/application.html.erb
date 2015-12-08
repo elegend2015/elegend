@@ -18,8 +18,7 @@
 <%= csrf_meta_tags %>
 
 </head>
-
-	
+	<body>
     <!-- ==========================
     	HEADER - START 
     =========================== -->
@@ -79,6 +78,10 @@
                     <div class="box registration-form">
                         
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<%= devise_error_messages! %>
+<% flash.each do |key, value| %>
+   <div class="alert alert-success <%= key %>"><%= value %></div>
+<% end %>
 <div class="col-sm-5">
     <div class="form-group">
         <%= f.label :email %>
@@ -129,7 +132,7 @@
 <% end %>
 
     </div>
-</div>
+                </div>
                     
                 </div>
             </div>
@@ -141,7 +144,7 @@
     <!-- ==========================
     	HEADER - END 
     =========================== --> 
-
+ <!--
 <% if notice %>
     <div class="container">
         <div class="row notify">
@@ -153,7 +156,7 @@
         </div>
     </div>
 <% end %>
-<body>
+-->
 <%= yield %>
 
 <!-- ==========================
@@ -219,10 +222,9 @@
                     <% if user_signed_in? %>
                 	<ul class="nav navbar-nav">
                         <li><%= link_to "Home", root_path, method: :get %></li>
-                        <li><a href="#">Admin team</a></li>
-                        <li><%= link_to("Profile", profile_path, method: :get) %></li>
-                        
-                        <li><a href="forum.html">Forum</a></li>
+                        <li><%= link_to "Profile", profile_path, method: :get %></li>
+                        <li><%= link_to("Message", messages_path, method: :get) %></li>
+                        <li><%= link_to("Gallery", gallery_path, method: :get) %></li>
                         <li><%= link_to "eLEGEND - Terms of Service", terms_of_service_path, method: :get %></li>
                     </ul>
                     <% else %>                   

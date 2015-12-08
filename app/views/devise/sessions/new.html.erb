@@ -40,29 +40,29 @@
   <%= devise_error_messages! %>
   <div class="form-group">
   <%= f.label :first_name %><br />
-  <%= f.text_field :first_name, class: "form-control", placeholder: "Enter first name", autofocus: true, required: true %>
+  <%= f.text_field :first_name, class: "form-control", placeholder: "First name", autofocus: true, required: true, oninvalid: "setCustomValidity('First name can not be blank')", onchange: "try{setCustomValidity('')}catch(e){}" %>
   </div>
   <div class="form-group">
   <%= f.label :last_name %><br />
-  <%= f.text_field :last_name, class: "form-control", placeholder: "Enter last name",  required: true %>
+  <%= f.text_field :last_name, class: "form-control", placeholder: "Last name",  required: true, oninvalid: "setCustomValidity('Last name can not be blank')", onchange: "try{setCustomValidity('')}catch(e){}" %>
   </div>                 
   <div class="form-group">                          
     <%= f.label :email %><br />
-    <%= f.email_field :email, class: "form-control", placeholder: "Enter email",  required: true %>
+    <%= f.email_field :email, class: "form-control", placeholder: "Email",  required: true, oninvalid: "setCustomValidity('Please use email format')", onchange: "try{setCustomValidity('')}catch(e){}" %>
   </div>                            
   <div class="form-group">      
     <%= f.label :password %>
     <% if @validatable %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, class: "form-control", placeholder: "Password", autocomplete: "off",  required: true %>
+    <%= f.password_field :password, class: "form-control", placeholder: "Password", autocomplete: "off",  required: true, minlength:8, maxlength: 20, oninvalid: "setCustomValidity('Password must be more than 8 to 20 digit')", onchange: "try{setCustomValidity('')}catch(e){}" %>
   </div>
   <div class="form-group">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Retype Password", autocomplete: "off",  required: true %>
+    <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Retype Password", autocomplete: "off",  required: true, minlength:8, maxlength: 20, oninvalid: "setCustomValidity('Password must be more than 8 to 20 digit')", onchange: "try{setCustomValidity('')}catch(e){}" %>
   </div>
   <div class="form-group">
-  <input type="checkbox" checked="checked" id="checky">&nbsp;
+  <input type="checkbox" required >&nbsp;
     <%= link_to "Terms of Service & Privacy Policy", terms_of_service_path %>
   </div>
   <div class="form-group">
@@ -77,7 +77,6 @@
     
 <%= content_for :signin_js do %>      
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script><!-- used for Check box  -->
 <script src="/assets/bootstrap.min.js"></script>
 <script src="/assets/owl.carousel.js"></script>
 <script src="/assets/jquery.magnific-popup.min.js"></script>
@@ -87,7 +86,8 @@
 <script src="/assets/jquery.countdown.min.js"></script>
 <script src="/assets/custom.js"></script>
 
-<!-- Check box  -->
+<!-- Check box  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
 <script type="text/javascript">
 $('#checky').click(function(){
      
@@ -99,5 +99,6 @@ $('#checky').click(function(){
     }
 });
 </script>
+-->
 
 <% end %>
