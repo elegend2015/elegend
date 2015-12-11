@@ -188,34 +188,40 @@
                 </div>
                 <div role="tabpanel" class="tab-pane fade" id="friend">
                     
-                    <div class="box  config">
-                        <div class="row">
-                            <% for user in @users %>
-                            <div class="col-sm-3">
-                            <% if user.profile_pic_url != nil %>
-                            <%= image_tag user.profile_pic_url, class: "img-responsive img-circle center-block img-thumbnail" %>
-                            <% else %>
-                            <%= image_tag('profile-img.jpg', class: "img-responsive img-circle center-block img-thumbnail") %>
-                            <% end %> 
-                               <h4><%= user.first_name %></h4><p><%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post%></p><br>
-                            </div>
-                           <% end %>
-                        </div>                        
-                    </div>
+    <div class="box  config">
+        <div class="row">
+
+            <% for user in @users %>
+
+            <div class="col-sm-3">
+            <% if user.profile_pic_url != nil %>
+            <%= image_tag user.profile_pic_url, class: "img-responsive img-circle center-block img-thumbnail" %>
+            <% else %>
+            <%= image_tag('profile-img.jpg', class: "img-responsive img-circle center-block img-thumbnail") %>
+            <% end %> 
+
+               <h4><%= user.first_name %></h4><p><%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post%></p><br>
+            </div>
+
+           <% end %>
+        </div>                        
+    </div>
 
                     <div class="box  config">
                         <h2>Friends</h2>
                         <div class="row">
-        <% for f in @friends_all %>
+
+                        
+        <% for f1 in @friends %>
             <div class="col-sm-3">
 
-        <% ud = User.find(f.friend_id) %>
-        <% if ud.profile_pic_url != nil %>        
-            <%= image_tag ud.profile_pic_url, class: "img-responsive img-circle center-block img-thumbnail" %>
+        <% ud1 = User.find(f1.friend_id) %>
+        <% if ud1.profile_pic_url != nil %>        
+            <%= image_tag ud1.profile_pic_url, class: "img-responsive img-circle center-block img-thumbnail" %>
         <% else %>
             <%= image_tag('profile-img.jpg', class: "img-responsive img-circle center-block img-thumbnail") %>
         <% end %>
-            <p><%=h ud.first_name %></p>
+            <p><%=h ud1.first_name %></p>
     
     
         
@@ -252,25 +258,29 @@
                     </div>
 
                     <div class="box  config">
-                        
-                         <!-- <p><%= link_to "Find Friends", profile_path %></p> -->
-
-                        <h2>Friended by Users</h2>
+                        <h2>Friends Request Received</h2>
                         <div class="row">
-                            <% for user in current_user.inverse_friends %>
-                                <div class="col-sm-3">
-                                    <% if user.profile_pic_url != nil %>
-                                    <%= image_tag user.profile_pic_url, class: "img-responsive img-circle center-block img-thumbnail" %>
-                                    <% else %>
-                                    <%= image_tag('profile-img.jpg', class: "img-responsive img-circle center-block img-thumbnail") %>
-                                    <% end %>
-                                    <p><%=h user.first_name %></p><p><%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post%></p><br>
-                                    <%= button_to "Accept", friend_accept_friendships_path(:friend_id => user) %>
-                                    
-                                </div>
-                            <% end %>
+        <% for f in @friends_rq_recieved %>
+            <div class="col-sm-3">
+
+    <% ud = User.find(f.friend_id) %>
+        <% if ud.profile_pic_url != nil %>        
+            <%= image_tag ud.profile_pic_url, class: "img-responsive img-circle center-block img-thumbnail" %>
+        <% else %>
+            <%= image_tag('profile-img.jpg', class: "img-responsive img-circle center-block img-thumbnail") %>
+        <% end %>
+    
+    
+        <p><%=h ud.first_name %></p>
+        <br>
+        <%= button_to "Accept", friend_accept_friendships_path(:friend_id => ud) %>
+                                
+            </div>
+        <% end %>
                         </div>
                     </div>
+
+                    
                     
                 </div>
 

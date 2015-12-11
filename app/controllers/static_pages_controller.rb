@@ -11,10 +11,9 @@ class StaticPagesController < ApplicationController
   	@users = User.all_except(current_user)
     @genres = Genre.all
     @channels = Channel.all
-    @friends_rq_sent = Friendship.where(:user_id => current_user.id)
-    @friends_all_1 = Friendship.where(:user_id => current_user.id, :status => 2)
-    @friends_all_2 = Friendship.where(:friend_id => current_user.id, :status => 2)
-    @friends_all =  @friends_all_1.merge(@friends_all_2)
+    @friends_rq_sent = Friendship.where(:user_id => current_user.id, :status => 1)
+    @friends_rq_recieved = Friendship.where(:user_id => current_user.id, :status => 3)
+    @friends = Friendship.where(:user_id => current_user.id, :status => 2)
   end
 
   def terms_of_service 
