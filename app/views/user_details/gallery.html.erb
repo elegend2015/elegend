@@ -60,6 +60,7 @@
                 	<div class="box">
                         <div class="row">
                             <div class="col-sm-12">
+<% if @user == current_user %>
 <%= form_tag gallery_pic_user_details_path, :multipart => true, :method=>'post', class: "form-inline" do %>
         <div class="form-group"> 
             <%= file_field_tag  "pic", class: "form-control" %>
@@ -68,6 +69,7 @@
            <%= submit_tag "Add" , class: "btn btn-primary" %>
         </div>
         <hr>
+<% end %>
 <% end %>
                             </div>
                         </div>

@@ -43,8 +43,8 @@
                 <div class="row" id="profile_img">
                     <div class="col-sm-4 col-md-3">
                         <a href="#" data-toggle="modal" data-target="#ModalProfile"> 
-                            <% if current_user.profile_pic_url != nil %>
-                            <%= image_tag current_user.profile_pic_url, class: "img-responsive center-block img-thumbnail" %>
+                            <% if @user.profile_pic_url != nil %>
+                            <%= image_tag @user.profile_pic_url, class: "img-responsive center-block img-thumbnail" %>
                             <% else %>
                             <%= image_tag('profile-img.jpg', class: "img-responsive center-block img-thumbnail") %>
                             <% end %> 
@@ -57,11 +57,11 @@
                         </ul> -->
                     </div>
                     <div class="col-sm-8 col-md-9">
-                        <h2>Player Username<small><%= current_user.first_name %></small></h2>
+                        <h2>Player Username<small><%= @user.first_name %></small></h2>
                         <ul class="list-unstyled">
-                            <li><strong>Member since:</strong><%= current_user.created_at.strftime("%Y %b %d") %></li>
-                            <li><strong>Email:</strong><%= current_user.email %></li>
-                            <li><strong>Status:</strong><%= current_user.status %></li>
+                            <li><strong>Member since:</strong><%= @user.created_at.strftime("%Y %b %d") %></li>
+                            <li><strong>Email:</strong><%= @user.email %></li>
+                            <li><strong>Status:</strong><%= @user.status %></li>
                         </ul>
                     </div>
                 </div>
@@ -75,11 +75,11 @@
     <div class="col-sm-4" id="profile-list">
         <div class="box">
       <ul class="nav nav-tabs nav-stacked" role="tablist">
-        <li role="presentation" class="active"><a href="#contact_info" aria-controls="contact_info" role="tab" data-toggle="tab">Contact Information</a></li>
+        <li role="presentation" class="active"><a href="#friend" aria-controls="friend" role="tab" data-toggle="tab">Friends</a></li>
+        <li role="presentation"><a href="#contact_info" aria-controls="contact_info" role="tab" data-toggle="tab">Contact Information</a></li>
         <li role="presentation"><a href="#personal_info" aria-controls="personal_info" role="tab" data-toggle="tab">Personal Information</a></li>
         <li role="presentation"><a href="#gamer" aria-controls="gamer" role="tab" data-toggle="tab">Gamer Information</a></li>
         <li role="presentation"><a href="#channel" aria-controls="channel" role="tab" data-toggle="tab">Channel Section</a></li>
-        <li role="presentation"><a href="#friend" aria-controls="friend" role="tab" data-toggle="tab">Friends</a></li>
       </ul>
         </div>
         
@@ -93,7 +93,7 @@
     <div class="col-sm-8">
         <div class="box">
             <div class="tab-content">
-                <div role="tabpanel" class="tab-pane fade in active" id="contact_info">
+                <div role="tabpanel" class="tab-pane fade" id="contact_info">
                     <div class="row">
                         <div class="col-sm-11">
                             <hr>
@@ -102,7 +102,7 @@
                                     <h5>Address:</h5>
                                 </div>
                                 <div class="col-sm-10">
-                                    <h5><%= current_user.addr %></h5>
+                                    <h5><%= @user.addr %></h5>
                                 </div>
                             </div>
                             <hr>
@@ -111,7 +111,7 @@
                                     <h5>Phone:</h5>
                                 </div>
                                 <div class="col-sm-10">
-                                    <h5><%= current_user.phone %></h5>
+                                    <h5><%= @user.phone %></h5>
                                 </div>
                             </div>                    
                             <hr>
@@ -120,13 +120,15 @@
                                     <h5>Email:</h5>
                                 </div>
                                 <div class="col-sm-10">
-                                    <h5><%= current_user.email %></h5>
+                                    <h5><%= @user.email %></h5>
                                 </div>
                             </div>
                             <hr>
                         </div>
                         <div class="col-sm-1">
+                            <% if @user == current_user %>
                             <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModalContact">Edit</button>
+                            <% end %>
                         </div>
                     </div>
                 </div>
@@ -139,7 +141,7 @@
                                     <h5>Gender:</h5>
                                 </div>
                                 <div class="col-sm-10">
-                                    <h5><%= current_user.gender %></h5>
+                                    <h5><%= @user.gender %></h5>
                                 </div>
                             </div>
                             <hr>
@@ -148,7 +150,7 @@
                                     <h5>Status:</h5>
                                 </div>
                                 <div class="col-sm-10">
-                                    <h5><%= current_user.status %></h5>
+                                    <h5><%= @user.status %></h5>
                                 </div>
                             </div>
                             <hr>
@@ -157,13 +159,15 @@
                                     <h5>About:</h5>
                                 </div>
                                 <div class="col-sm-10">
-                                    <h5><%= current_user.about %></h5>
+                                    <h5><%= @user.about %></h5>
                                 </div>
                             </div>
                             <hr>
                         </div>
                         <div class="col-sm-1">
+                            <% if @user == current_user %>
                             <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModalContact">Edit</button>
+                            <% end %>
                         </div>
                     </div>
                 </div>
@@ -186,100 +190,91 @@
                         <% end %>
                     </div>
                 </div>
-                <div role="tabpanel" class="tab-pane fade" id="friend">
+                <div role="tabpanel" class="tab-pane fade in active" id="friend">
                     
-    <div class="box  config">
-        <div class="row">
-
-            <% for user in @users %>
-
-            <div class="col-sm-3">
-            <% if user.profile_pic_url != nil %>
-            <%= image_tag user.profile_pic_url, class: "img-responsive img-circle center-block img-thumbnail" %>
-            <% else %>
-            <%= image_tag('profile-img.jpg', class: "img-responsive img-circle center-block img-thumbnail") %>
-            <% end %> 
-
-               <h4><%= user.first_name %></h4><p><%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post%></p><br>
-            </div>
-
-           <% end %>
-        </div>                        
-    </div>
-
-                    <div class="box  config">
-                        <h2>Friends</h2>
-                        <div class="row">
-
-                        
+<div class="box  config">
+    <h2>Friends</h2>
+    <div class="row">
         <% for f1 in @friends %>
             <div class="col-sm-3">
-
         <% ud1 = User.find(f1.friend_id) %>
         <% if ud1.profile_pic_url != nil %>        
             <%= image_tag ud1.profile_pic_url, class: "img-responsive img-circle center-block img-thumbnail" %>
         <% else %>
             <%= image_tag('profile-img.jpg', class: "img-responsive img-circle center-block img-thumbnail") %>
         <% end %>
-            <p><%=h ud1.first_name %></p>
-    
-    
-        
-                                
+        <%= link_to(ud1.first_name, profile_user_details_path(:id =>ud1.id), method: :get) %>
+        <% if @user == current_user %>
+        <p><%= link_to "Remove", destroy_friendship_friendships_path(:friend_id => ud1.id), :method => :post %></p>
+        <% end %><br>
             </div>
         <% end %>
-                        </div>
-                    </div>
+    </div>
+</div>
 
-                    <div class="box  config">
-                        <h2>Friends Request sent</h2>
-                        <div class="row">
+<div class="box  config">
+    <div class="row">
+        <% for user in @users %>
+            <div class="col-sm-3">
+        <% if user.profile_pic_url != nil %>
+            <%= image_tag user.profile_pic_url, class: "img-responsive img-circle center-block img-thumbnail" %>
+        <% else %>
+            <%= image_tag('profile-img.jpg', class: "img-responsive img-circle center-block img-thumbnail") %>
+        <% end %> 
+           <h4><%= user.first_name %></h4><p><%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post%></p><br>
+            </div>
+       <% end %>
+    </div>                        
+</div>
+
+<% if @user == current_user %>
+<div class="box  config">
+    <h2>Friends Request sent</h2>
+    <div class="row">
         <% for f in @friends_rq_sent %>
             <div class="col-sm-3">
-
-    <% ud = User.find(f.friend_id) %>
+        <% ud = User.find(f.friend_id) %>
         <% if ud.profile_pic_url != nil %>        
             <%= image_tag ud.profile_pic_url, class: "img-responsive img-circle center-block img-thumbnail" %>
         <% else %>
             <%= image_tag('profile-img.jpg', class: "img-responsive img-circle center-block img-thumbnail") %>
         <% end %>
-            <p><%=h ud.first_name %></p>
-    
-        <% if f.status = "1" %>
-            <p>Request sent</p>
-            <p><%= link_to "Remove", f, :method => :delete %></p><br>
-        <% else %>
-            <p><%= link_to "Remove", f, :method => :delete %></p><br>
+         
+        <%= link_to(ud.first_name, profile_user_details_path(:id =>ud.id), method: :get) %>
+        <% if @user == current_user %>
+        <p><%= link_to "Remove", destroy_friendship_friendships_path(:friend_id => ud.id), :method => :post %></p>
         <% end %>
-                                
+
             </div>
         <% end %>
-                        </div>
-                    </div>
+    </div>
+</div>
+<% end %>
 
-                    <div class="box  config">
-                        <h2>Friends Request Received</h2>
-                        <div class="row">
+<% if @user == current_user %>
+<div class="box  config">
+    <h2>Friends Request Received</h2>
+    <div class="row">
         <% for f in @friends_rq_recieved %>
             <div class="col-sm-3">
-
-    <% ud = User.find(f.friend_id) %>
+        <% ud = User.find(f.friend_id) %>
         <% if ud.profile_pic_url != nil %>        
             <%= image_tag ud.profile_pic_url, class: "img-responsive img-circle center-block img-thumbnail" %>
         <% else %>
             <%= image_tag('profile-img.jpg', class: "img-responsive img-circle center-block img-thumbnail") %>
         <% end %>
-    
-    
-        <p><%=h ud.first_name %></p>
+        
         <br>
-        <%= button_to "Accept", friend_accept_friendships_path(:friend_id => ud) %>
-                                
+        <%= link_to(ud.first_name, profile_user_details_path(:id =>ud.id), method: :get) %>
+        <% if @user == current_user %>
+        <p><%= button_to "Accept", friend_accept_friendships_path(:friend_id => ud) %>
+        <%= link_to "Remove", destroy_friendship_friendships_path(:friend_id => ud.id), :method => :post %></p>
+        <% end %>
             </div>
         <% end %>
-                        </div>
-                    </div>
-
+    </div>
+</div>
+<% end %>
                     
                     
                 </div>
@@ -551,23 +546,23 @@
         <%= form_tag(update_user_user_details_path, :method=>'post') do %>
         <div class="form-group"> 
             <%= label_tag 'addr', 'Address' %>
-            <%= text_field_tag 'addr', current_user.addr, class: "form-control" %>
+            <%= text_field_tag 'addr', @user.addr, class: "form-control" %>
         </div>
         <div class="form-group"> 
             <%= label_tag 'phone', 'Phone' %>
-            <%= text_field_tag 'phone', current_user.phone, class: "form-control" %>
+            <%= text_field_tag 'phone', @user.phone, class: "form-control" %>
         </div>
         <div class="form-group"> 
             <%= label_tag 'gender', 'Gender' %>
-            <%= text_field_tag 'gender', current_user.gender, class: "form-control" %>
+            <%= text_field_tag 'gender', @user.gender, class: "form-control" %>
         </div>
         <div class="form-group"> 
             <%= label_tag 'status', 'Status' %>
-            <%= text_field_tag 'status', current_user.status, class: "form-control" %>
+            <%= text_field_tag 'status', @user.status, class: "form-control" %>
         </div>
         <div class="form-group"> 
             <%= label_tag 'about', 'About' %>
-            <%= text_area_tag 'about', current_user.about, class: "form-control" %>
+            <%= text_area_tag 'about', @user.about, class: "form-control" %>
         </div>
         <div class="form-group"> 
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
