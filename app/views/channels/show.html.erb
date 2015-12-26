@@ -23,7 +23,7 @@
 <div class="container hidden-xs">
     <div class="header-title">
         <div class="pull-left">
-            <h1><a href="#"><span class="text-primary">Create</span>Channels</a></h1>
+            <h1><a href="#"><span class="text-primary">C</span>hannel</a></h1>
         </div>
     </div>
 </div>
@@ -35,7 +35,18 @@
 <span>Channel Name: </span><%= @channel.name %><br>
 <span>Channel Description: </span><%= @channel.description %><br>
 <span>Channel Type: </span><%= @channel.channel_type %><br>
+<span>Channel image: </span><%= image_tag @channel.channel_img_url %><br>
+<span class= "text-capitalize">Posted by:
+            <% postby = User.find(@channel.user_id) %>
+         <strong><%= postby.first_name %> <%= postby.last_name %></strong>
+</span>
 
+<% if @fol.exists? %>
+<span><%= link_to 'Unfollow', unfollow_channels_path(:user_id => current_user.id, :channel_id => @channel.id), :method => :put %></span>
+
+<% else %>
+<span><%= link_to 'Follow', follow_channels_path(:user_id => current_user.id, :channel_id => @channel.id), :method => "post" %></span>
+<% end %>
             </div>
         </div>
         <div class="row">

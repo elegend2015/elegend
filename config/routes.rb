@@ -33,7 +33,12 @@ end
   match '/terms-of-service', to: 'static_pages#terms_of_service', via: 'get', as: :terms_of_service
   match '/demo', to: 'static_pages#demo', via: 'get', as: :demo
   
-resources :messages
+resources :messages do 
+collection do
+   get :message
+  end
+end
+
 resources :newsfeeds
 resources :genres do
   # collection do
@@ -42,6 +47,8 @@ end
 resources :channels do
 collection do 
   post :create_new_post
+  post :follow
+  put :unfollow
   end
 end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151209104110) do
+ActiveRecord::Schema.define(version: 20151224073624) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -46,6 +46,13 @@ ActiveRecord::Schema.define(version: 20151209104110) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
+  create_table "channel_follows", force: :cascade do |t|
+    t.integer  "channel_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "channel_posts", force: :cascade do |t|
     t.text     "comment"
     t.integer  "channel_id"
@@ -55,9 +62,10 @@ ActiveRecord::Schema.define(version: 20151209104110) do
   end
 
   create_table "channels", force: :cascade do |t|
+    t.integer  "user_id"
     t.string   "name"
     t.text     "description"
-    t.string   "img"
+    t.string   "channel_img"
     t.string   "channel_type"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
@@ -107,6 +115,7 @@ ActiveRecord::Schema.define(version: 20151209104110) do
     t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "friend_id"
   end
 
   create_table "newsfeeds", force: :cascade do |t|

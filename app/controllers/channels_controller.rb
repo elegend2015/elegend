@@ -16,6 +16,7 @@ class ChannelsController < ApplicationController
   def show
   	@channel = Channel.find(params[:id])
   	@channel_posts = ChannelPost.where(:channel_id => @channel.id)
+    @fol = ChannelFollow.where(:user_id => current_user.id, :channel_id => @channel.id)
   end
 
   def create_new_post
@@ -27,8 +28,22 @@ class ChannelsController < ApplicationController
   	redirect_to :back
   end
 
+  def follow
+    @follow = ChannelFollow.new
+    @follow.user_id = current_user.id
+    @follow.channel_id = params[:channel_id]
+    @follow.save
+    redirect_to :back
+  end
+
+  def unfollow
+    @unfollow = ChannelFollow.where(:user_id => current_user.id, :channel_id => params["channel_id"])
+    @unfollow[0].destroy!
+    redirect_to :back
+  end
+
   private
   def channel_params
-  	params.require(:channel).permit(:name, :description, :channel_type) 	
+  	params.require(:channel).permit(:name, :description, :channel_type, :channel_img, :user_id) 	
   end
 end

@@ -82,7 +82,11 @@
         <li role="presentation"><a href="#channel" aria-controls="channel" role="tab" data-toggle="tab">Channel Section</a></li>
       </ul>
         </div>
-        
+        <% if @user != current_user %>
+        <div class="box sidebar-box widget-wrapper">
+            <h3><%= link_to("Gallery", gallery_user_details_path(:id =>@user.id), method: :get) %></h3>
+        </div>
+        <% end %>
         <div class="box sidebar-box widget-wrapper">
             <h3>Latest News</h3>
             <div id="twitter-wrapper">
@@ -182,12 +186,27 @@
                 </div>
                 <div role="tabpanel" class="tab-pane fade" id="channel">
                     <div class="box">
+                        <div class="row">
+                            <div class="col-md-12">
+                               <h5><%= link_to "Create a channel", new_channel_path %></h5> 
+                            </div>
+                            <div class="col-md-6">
+                        <h4>You are following :</h4>
                         <% @channels.each do |channel| %>
-                            <h5>Name: <%= channel.name %></h5>
-                            <h5>Description: <%= channel.description %></h5>
-                            <h5>Channel Type: <%= channel.channel_type %></h5>
-                            <br>
+                            <!-- <h5>Name: <%= channel.channel_id %></h5> -->
+                            <% chd = Channel.find(channel.channel_id) %>
+                            <h5><%= link_to chd.name, channel_path(:id => channel.channel_id) %></h5>
                         <% end %>
+                            </div>
+                            <div class="col-md-6">
+                        <h4>Your Channels :</h4>
+                            <% @mychannels.each do |mychannel| %>
+                                <h5><%= link_to mychannel.name, channel_path(:id => mychannel.id) %></h5>
+                            <% end %>
+                            </div>
+
+
+                        </div>
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane fade in active" id="friend">

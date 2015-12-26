@@ -23,7 +23,7 @@
 <div class="container hidden-xs">
 	<div class="header-title">
     	<div class="pull-left">
-    		<h1><a href="index.html"><span class="text-primary">Create</span>Channels</a></h1>
+    		<h1><a href="#"><span class="text-primary">Create</span>Channels</a></h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
         </div>
     </div>
@@ -33,8 +33,8 @@
     <section class="content-wrapper">
     	  <div class="row">
     	  	<div class="col-sm-12">
-<%= form_for(@channel) do |f| %>
-
+<%= form_for @channel , :html => {:multipart => true} do |f| %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
 	<div class="form-group"> 
 	    <div class="row">               
 	        <label class="control-label col-sm-4 col-md-3">Channel Name</label>
@@ -59,10 +59,19 @@
 	        </div>
 	    </div>
 	</div>
+    <div class="form-group"> 
+        <div class="row">               
+            <label class="control-label col-sm-4 col-md-3">Channel Image</label>
+            <div class="col-sm-6 col-md-5">
+                <%= f.file_field :channel_img, tabindex: "4", class: "form-control", required: true %>
+            </div>
+        </div>
+    </div>
+     
 	<div class="row">
         <div class="actions">
         	<div class="col-xs-6 col-sm-5 col-md-4">                                        
-                <%= link_to 'Cancel', root_path, :class => 'btn btn-primary', tabindex: "4" %>
+                <%= link_to 'Cancel', root_path, :class => 'btn btn-primary', tabindex: "6" %>
             </div>
             <div class="col-xs-6 col-sm-5 col-md-4">
                     <%= f.submit 'Submit', :class => 'btn btn-primary',tabindex: "5" %>
