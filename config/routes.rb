@@ -46,6 +46,7 @@ resources :genres do
 end
 resources :channels do
 collection do 
+  put :delete_channel
   post :create_new_post
   post :follow
   put :unfollow

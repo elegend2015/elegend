@@ -27,6 +27,10 @@ class User < ActiveRecord::Base
   		where.not(id: user)
 	  end
 
+    def self.search(search)
+      where("first_name LIKE ?", "%#{search}%")
+    end
+
 
     def self.from_omniauth(auth)
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

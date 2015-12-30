@@ -26,13 +26,19 @@ class UserDetailsController < ApplicationController
 
 	def profile
 		@user = User.find(params[:id])
-		@users = User.all_except(current_user)
+		#@users = User.all_except(current_user)
 	    @genres = Genre.all
 	    @mychannels = Channel.where(:user_id => @user.id)
 	    @channels = ChannelFollow.where(:user_id => @user.id)
 	    @friends_rq_sent = Friendship.where(:user_id => @user.id, :status => 1)
 	    @friends_rq_recieved = Friendship.where(:user_id => @user.id, :status => 3)
 	    @friends = Friendship.where(:user_id => @user.id, :status => 2)
+		if params[:search]
+	    	@users = User.search(params[:search])
+	  	else
+	    	@users = User.all_except(current_user)
+	  	end
+
 	end
 
 	def gallery

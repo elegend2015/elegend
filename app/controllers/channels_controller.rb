@@ -13,10 +13,35 @@ class ChannelsController < ApplicationController
   	redirect_to @channel
   end
 
+  def edit
+    @channel = Channel.find(params[:id])
+  end
+
   def show
   	@channel = Channel.find(params[:id])
   	@channel_posts = ChannelPost.where(:channel_id => @channel.id)
     @fol = ChannelFollow.where(:user_id => current_user.id, :channel_id => @channel.id)
+  end
+
+  def update
+    @channel = Channel.find(params[:id])
+    @channel.update(channel_params)
+    redirect_to channel_path
+  end
+
+  def delete_channel
+    @channel = Channel.find(params[:id])
+    @channel.destroy!
+    @channel_post = ChannelPost.where(:channel_id => @channel.id)
+    @channel_post.each do |cp|
+      cp.destroy!
+    end
+    @channel_fol = ChannelFollow.where(:channel_id => @channel.id)
+    @channel_fol.each do |cf|
+      cf.destroy!
+    end
+    
+    redirect_to root_path
   end
 
   def create_new_post

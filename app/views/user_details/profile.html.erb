@@ -212,6 +212,54 @@
                 <div role="tabpanel" class="tab-pane fade in active" id="friend">
                     
 <div class="box  config">
+    <div class="row">
+        <div class="col-sm-6 text-left">
+            <div class="form-group">
+                <%= form_tag(profile_user_details_path, :method => "get", id: "search-form") do %>
+                <%= hidden_field_tag :id, @user.id %>
+                <%= text_field_tag :search, params[:search], placeholder: "Search Friend", class: "form-control" %>
+                <%= submit_tag "Search", class: "btn btn-primary" %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+    <% if @users.present? %>
+      <% for usr in @users %>
+        <div class="col-sm-3">
+        <% if usr.profile_pic_url != nil %>        
+            <%= image_tag usr.profile_pic_url, class: "img-responsive img-circle center-block img-thumbnail" %>
+        <% else %>
+            <%= image_tag('profile-img.jpg', class: "img-responsive img-circle center-block img-thumbnail") %>
+        <% end %>
+        <%= link_to(usr.first_name, profile_user_details_path(:id =>usr.id), method: :get) %>
+        <% if @user == current_user %>
+
+            <% uf = Friendship.where(:user_id => current_user.id ,:friend_id =>usr.id) %>
+            <% if uf != [] %>
+                <% if uf[0].status == '2' %>
+                    <p><%= link_to "Remove", destroy_friendship_friendships_path(:friend_id => usr.id), :method => :post %></p>
+                <% elsif uf[0].status == '3' %>
+                    <p><%= button_to "Accept", friend_accept_friendships_path(:friend_id => usr) %>
+                    <%= link_to "Remove", destroy_friendship_friendships_path(:friend_id => usr.id), :method => :post %></p>
+                <% elsif uf[0].status == '1' %>
+                    <p><%= link_to "Request remove", destroy_friendship_friendships_path(:friend_id => usr.id), :method => :post %></p>
+                <% else %>
+                    <p><%= link_to "Add Friend", friendships_path(:friend_id => usr), :method => :post%></p>
+                <% end %>
+            <% else %>
+                <p><%= link_to "Add Friend", friendships_path(:friend_id => usr), :method => :post%></p>
+            <% end %>
+
+        <% end %><br>
+        </div>
+      <% end %>
+    <% else %>
+      <p>There are no friend like <%= params[:search] %>.</p>
+    <% end %>
+    </div>
+</div>
+<div class="box  config">
     <h2>Friends</h2>
     <div class="row">
         <% for f1 in @friends %>
@@ -229,21 +277,6 @@
             </div>
         <% end %>
     </div>
-</div>
-
-<div class="box  config">
-    <div class="row">
-        <% for user in @users %>
-            <div class="col-sm-3">
-        <% if user.profile_pic_url != nil %>
-            <%= image_tag user.profile_pic_url, class: "img-responsive img-circle center-block img-thumbnail" %>
-        <% else %>
-            <%= image_tag('profile-img.jpg', class: "img-responsive img-circle center-block img-thumbnail") %>
-        <% end %> 
-           <h4><%= user.first_name %></h4><p><%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post%></p><br>
-            </div>
-       <% end %>
-    </div>                        
 </div>
 
 <% if @user == current_user %>
@@ -606,5 +639,5 @@
     <script src="/assets/jquery.vegas.min.js"></script>
     <script src="/assets/twitterFetcher_min.js"></script>
     <script src="/assets/jquery.countdown.min.js"></script>
-    <script src="/assets/custom.js"></script>
+   
 <% end %>

@@ -594,6 +594,7 @@ footer.navbar p.terms {
 	background-color: #F0F0F0;
 	background-image:url(../assets/pattern.png);
 	padding:20px;
+	min-height: 400px;
 }
 
 .content-wrapper .box,
@@ -1110,7 +1111,10 @@ article.post-single .post-body .gallery-page {
 	width: 100px;
 	height: 100px;
 }
-
+#friend .form-control {
+    display: inline;
+    width: auto; 
+}
 /*------------------------------
 	GALLERY
 ------------------------------*/

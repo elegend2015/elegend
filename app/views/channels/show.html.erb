@@ -31,6 +31,12 @@
 <div class="container">
     <section class="content-wrapper">
           <div class="row">
+            <div class="col-sm-12 text-right">
+<% if @channel.user_id == current_user.id %>
+<%= link_to "Edit", edit_channel_path(@channel), :class => 'btn btn-primary' %>
+<%= link_to "Delete Channel", delete_channel_channels_path(:id => @channel.id), :method => :put, data: {confirm: "Are you sure you want to delete this channel ?"}, :class => 'btn btn-primary' %>
+<% end %>
+            </div>
             <div class="col-sm-12">
 <span>Channel Name: </span><%= @channel.name %><br>
 <span>Channel Description: </span><%= @channel.description %><br>
