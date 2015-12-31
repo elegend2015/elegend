@@ -1,0 +1,80 @@
+<%= content_for :general_css do %>
+    <link href="/assets/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/assets/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/assets/animate.css" rel="stylesheet" type="text/css">
+    <link href="/assets/owl.carousel.css" rel="stylesheet" type="text/css">
+    <link href="/assets/owl.theme.css" rel="stylesheet" type="text/css">
+    <link href="/assets/owl.transitions.css" rel="stylesheet" type="text/css">
+    <link href="/assets/creative-brands.css" rel="stylesheet" type="text/css">
+    <link href="/assets/jquery.vegas.min.css" rel="stylesheet" type="text/css">
+    <link href="/assets/magnific-popup.css" rel="stylesheet" type="text/css">
+    <link href="/assets/custom.css" rel="stylesheet" type="text/css">
+    
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    
+<% end %>
+
+   
+    <!-- ==========================
+        TITLE - START 
+    =========================== -->
+    <div class="container">
+        <div class="header-title">
+            <div class="pull-left">
+                <h1><span class="text-primary">R</span>emove Images</h1>
+            </div>
+        </div>
+    </div>
+<!-- ===== TITLE - END ===== -->
+    
+
+
+<!-- ===== CONTENT - START ===== -->
+    <div class="container">
+        <section class="content-wrapper">
+            <div class="row">
+                
+                <!-- CONTENT BODY - START -->
+                <div class="col-sm-12">
+                    <div class="box">                      
+                        <div class="row">
+                            <% if @pictures.present?  %>
+                                <% for g in @pictures %>
+                                   <div class="col-sm-2">
+                                    <%= image_tag g.pic_url, class: "img-responsive img-thumbnail img_height" %>
+                                    <br>
+                                    <%= link_to 'Remove', del_gallery_pic_user_details_path(g.id), data: { confirm: 'Are you sure?' }, :method => :put %>
+                                    </div> 
+                                <% end %>
+                            <% else %>                            
+                                    <h1 class="text-center">You have no image to delete</h1>
+                            <% end %>
+                        </div> 
+                        <div class="row">
+                            <div class="col-sm-12 pad-top1">
+                                <%= link_to "Back to gallery", gallery_user_details_path(:id =>current_user.id), method: :get, class: "btn btn-primary" %>
+                            </div>
+                        </div>                                 
+                    </div>                   
+                </div>
+                <!-- CONTENT BODY - END -->
+                
+            </div>
+        </section>
+    </div>
+
+
+<%= content_for :general_js do %>     
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="/assets/bootstrap.min.js"></script>
+<script src="/assets/owl.carousel.js"></script>
+<script src="/assets/jquery.magnific-popup.min.js"></script>
+<script src="/assets/creative-brands.js"></script>
+<script src="/assets/jquery.vegas.min.js"></script>
+<script src="/assets/twitterFetcher_min.js"></script>
+<script src="/assets/jquery.countdown.min.js"></script>
+<script src="/assets/custom.js"></script>
+<% end %>

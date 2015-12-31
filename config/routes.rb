@@ -59,6 +59,7 @@ resources :user_details do
     post :update_pic    
     get :profile
     get :gallery
+    get :galleryimage
     post :gallery_pic
     put :del_gallery_pic
     post :pannel_pic

@@ -215,9 +215,9 @@
     <div class="row">
         <div class="col-sm-6 text-left">
             <div class="form-group">
-                <%= form_tag(profile_user_details_path, :method => "get", id: "search-form") do %>
+                <%= form_tag(profile_user_details_path, :method => "get",class: "form-inline") do %>
                 <%= hidden_field_tag :id, @user.id %>
-                <%= text_field_tag :search, params[:search], placeholder: "Search Friend", class: "form-control" %>
+                <%= text_field_tag :search, params[:search], placeholder: "Search Friend", class: "form-control", required: true, oninvalid: "setCustomValidity('Write a friend name')", onchange: "try{setCustomValidity('')}catch(e){}" %>
                 <%= submit_tag "Search", class: "btn btn-primary" %>
                 <% end %>
             </div>
@@ -254,8 +254,10 @@
         <% end %><br>
         </div>
       <% end %>
+    <% elsif params[:search] == nil %>
+        <span></span>
     <% else %>
-      <p>There are no friend like <%= params[:search] %>.</p>
+        <p>There are no friend like <%= params[:search] %>.</p>
     <% end %>
     </div>
 </div>
@@ -639,5 +641,5 @@
     <script src="/assets/jquery.vegas.min.js"></script>
     <script src="/assets/twitterFetcher_min.js"></script>
     <script src="/assets/jquery.countdown.min.js"></script>
-   
+    <script src="/assets/custom.js"></script>
 <% end %>

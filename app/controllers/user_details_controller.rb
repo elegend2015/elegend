@@ -35,17 +35,13 @@ class UserDetailsController < ApplicationController
 	    @friends = Friendship.where(:user_id => @user.id, :status => 2)
 		if params[:search]
 	    	@users = User.search(params[:search])
-	  	else
-	    	@users = User.all_except(current_user)
+	  	
 	  	end
 
 	end
 
 	def gallery
 		@channels = Channel.all.order('created_at DESC')
-	    #@user_id = current_user.id
-	    #@pictures = Gallery.find(params[:user_id => current_user.id])
-	    #@pictures = Gallery.find_by_user_id(current_user.id)
 	    @user = User.find(params[:id])
 	    @pictures = Gallery.where(:user_id => @user.id)
 	end
@@ -56,6 +52,11 @@ class UserDetailsController < ApplicationController
 		@gpic.pic = params[:pic]
 		@gpic.save
       	redirect_to :back
+	end
+
+	def galleryimage
+		@user = User.find(params[:id])
+	    @pictures = Gallery.where(:user_id => @user.id)
 	end
 
 	def del_gallery_pic

@@ -24,7 +24,7 @@
     <div class="container hidden-xs">
     	<div class="header-title">
         	<div class="pull-left">
-        		<h1><a href="/gallery"><span class="text-primary">G</span>allery</a></h1>
+        		<h1><span class="text-primary">G</span>allery</h1>
             </div>
         </div>
     </div>
@@ -33,63 +33,78 @@
 
 
 <!-- ===== CONTENT - START ===== -->
-    <div class="container">
-        <section class="content-wrapper">
-        	<div class="row">
-            
-            	<!-- SIDEBAR - START -->
-            	<div class="col-sm-4">
-                    
-                    <!-- SIDEBAR BOX CHANNEL NOTIFICATION- START -->
-                    <%= render :partial => 'layouts/channel_notification' %>
-                    <!-- SIDEBAR BOX CHANNEL NOTIFICATION - END -->
-                    
-                    <!-- SIDEBAR BOX - START -->
-                    <div class="box sidebar-box widget-wrapper">
-                    	<h3>Latest Tweets</h3>
-                        <div id="twitter-wrapper">
-                        </div>
-                    </div>
-                    <!-- SIDEBAR BOX - END -->
-                    
-                </div>
-                <!-- SIDEBAR - END -->
+<div class="container">
+    <section class="content-wrapper">
+    	<div class="row">
+        
+        	<!-- SIDEBAR - START -->
+        	<div class="col-sm-4">
                 
-                <!-- CONTENT BODY - START -->
-                <div class="col-sm-8">
-                	<div class="box">
-                        <div class="row">
-                            <div class="col-sm-12">
-<% if @user == current_user %>
-<%= form_tag gallery_pic_user_details_path, :multipart => true, :method=>'post', class: "form-inline" do %>
-        <div class="form-group"> 
-            <%= file_field_tag  "pic", class: "form-control" %>
-        </div>
-        <div class="form-group"> 
-           <%= submit_tag "Add" , class: "btn btn-primary" %>
-        </div>
-        <hr>
-<% end %>
-<% end %>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <% for g in @pictures %>
-                            <div class="col-sm-4">
-                            <%= image_tag g.pic_url, class: "img-responsive img-thumbnail" %>
-                            <%= link_to 'Remove', del_gallery_pic_user_details_path(g.id), data: { confirm: 'Are you sure?' }, :method => :put %>
-                            </div>
-
-                            <% end %>
-                        </div>
-                                   
+                <!-- SIDEBAR BOX CHANNEL NOTIFICATION- START -->
+                <%= render :partial => 'layouts/channel_notification' %>
+                <!-- SIDEBAR BOX CHANNEL NOTIFICATION - END -->
+                
+                <!-- SIDEBAR BOX - START -->
+                <div class="box sidebar-box widget-wrapper">
+                	<h3>Latest Tweets</h3>
+                    <div id="twitter-wrapper">
                     </div>
                 </div>
-                <!-- CONTENT BODY - END -->
+                <!-- SIDEBAR BOX - END -->
                 
             </div>
-        </section>
-    </div>
+            <!-- SIDEBAR - END -->
+            
+            <!-- CONTENT BODY - START -->
+            <div class="col-sm-8">
+            	<div class="box">
+                    <div class="row">
+                        <% if @user == current_user %>
+                        <div class="col-sm-8">
+                            <%= form_tag gallery_pic_user_details_path, :multipart => true, :method=>'post', class: "form-inline" do %>
+                                    <div class="form-group"> 
+                                        <%= file_field_tag  "pic", class: "form-control", required: true, oninvalid: "setCustomValidity('Choose a photo')", onchange: "try{setCustomValidity('')}catch(e){}" %>
+                                    </div>
+                                    <div class="form-group"> 
+                                       <%= submit_tag "Add" , class: "btn btn-primary" %>
+                                    </div>                        
+                            <% end %>
+                        </div>
+                        <div class="col-sm-4 text-right">
+                            <% if @pictures.present?  %>
+                            <%= link_to "Remove Images", galleryimage_user_details_path(:id =>current_user.id), method: :get, class: "btn btn-primary" %>
+                            <% end %>
+                        </div>
+                        <% end %>
+                    </div>              
+                </div>
+
+            <% if @pictures.present?  %>
+                <div class="box">                                            
+                    <!-- GALLERY POST - START -->
+                    <article class="post gallery-post">
+                        <div class="row gallery-page">
+                            <% for g in @pictures %>
+                                <div class="col-sm-3 ">
+                                  <%= link_to g.pic_url do %>
+                                  <br>
+                                    <%= image_tag g.pic_url, class: "img-responsive img-thumbnail img_height" %>
+                                  <% end %>
+                                </div>
+                            <% end %>                                                           
+                        </div>  
+                    </article>
+                    <!-- GALLERY POST - END -->
+                </div>
+            <% end %>
+
+            </div>
+                <!-- CONTENT BODY - END -->
+                
+        </div>
+    </section>
+</div>
+
 
 <%= content_for :general_js do %>     
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>

@@ -432,6 +432,7 @@ header.navbar .navbar-buttons .navbar-icon {
 }
 
 .header-title h1 {
+	color:#FFF;
 	font-size:50px;
 	font-weight:700;
 	padding: 0 0 20px 0;
@@ -1111,10 +1112,7 @@ article.post-single .post-body .gallery-page {
 	width: 100px;
 	height: 100px;
 }
-#friend .form-control {
-    display: inline;
-    width: auto; 
-}
+
 /*------------------------------
 	GALLERY
 ------------------------------*/
@@ -2464,6 +2462,9 @@ only screen and (max-width: 767px) {
 }
 .pad-bot1 {
 	padding-bottom: 1em
+}
+.img_height {
+	max-height: 100px;
 }
 .maxh18 {
 	max-height: 18em;
