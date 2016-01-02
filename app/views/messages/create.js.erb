@@ -1,2 +1,2 @@
-$("#chat").append("<%= j render(@message) %>");
+$("#chat").append("<%= escape_javascript(render(:partial => @message)) %>");
 $("#new_message")[0].reset();

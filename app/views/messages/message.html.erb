@@ -36,26 +36,26 @@
                <% end %>
             </div>
             <div class="col-sm-8">
-<div >
-    <div class="row maxh18">
-        <div class="col-sm-12">
-             <%= @frnd.first_name %>
-    <div id="chat" class="well">
-
-  <%= render @messages %>
-    </div>
-        </div>
-    </div>
-</div>
-<div class="pad-top1">
-<%= form_for Message.new, :remote => true do |f| %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.hidden_field :friend_id, value: @frnd.id %>
-  <%= f.text_area :content, class: "form-control", rows: "4", required: "true" %><br>
-  <%= f.submit "Send", class: "btn btn-primary" %>
-<% end %>
-
-</div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <%= @frnd.first_name %>
+                    </div>
+                </div>
+                <div class="row maxh18">
+                    <div class="col-sm-12"> 
+                        <div id="chat" class="well">
+                            <%= render :partial => 'messages/message', :collection => @messages %>
+                        </div>
+                    </div>
+                </div>
+                <div class="pad-top1">
+                    <%= form_for Message.new, :remote => true do |f| %>
+                        <%= f.hidden_field :user_id, value: current_user.id %>
+                        <%= f.hidden_field :friend_id, value: @frnd.id %>
+                        <%= f.text_area :content, class: "form-control", rows: "4", required: "true" %><br>
+                        <%= f.submit "Send", class: "btn btn-primary" %>
+                    <% end %>
+                </div>
             </div>
         </div>
     </section>

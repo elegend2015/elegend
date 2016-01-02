@@ -1,21 +1,15 @@
-	<!-- <div class="row">
-		<div class="col-sm-12 text-center">
-			<hr>
-	<%= message.created_at.strftime("%D") %>
-		</div>
-  	</div> -->
-	<div class="row">
-		<div class="col-sm-10">
-			<% post_by = User.find(message.user_id) %>
-             <strong><%= post_by.first_name %></strong>
-		</div>
-  		<div class="col-sm-2 text-right">
-  			<%= message.created_at.strftime("%H:%M") %>
-  		</div>
-  	</div>
-  	<div class="row">
-  		<div class="col-sm-10">
-			<%= message.content %>
+<div class="row">
+	<div class="col-sm-10">
+		<% post_by = User.find(message.user_id) %>
+         <strong><%= post_by.first_name %></strong>
+	</div>
+		<div class="col-sm-2 text-right">
+			<%= message.created_at.strftime("%H:%M") %>
 		</div>
 	</div>
+	<div class="row">
+		<div class="col-sm-10">
+		<%= message.content %>
+	</div>
+</div>
 

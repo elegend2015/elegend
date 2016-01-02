@@ -110,14 +110,6 @@ ActiveRecord::Schema.define(version: 20151217073757) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "messages", force: :cascade do |t|
-    t.integer  "user_id"
-    t.text     "content"
-    t.integer  "friend_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "newsfeeds", force: :cascade do |t|
     t.text     "post"
     t.text     "comment"
