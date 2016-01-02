@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+  devise_scope :user do
+    root to: "devise/sessions#new"
+  end
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   get 'consoles/index'
@@ -18,11 +23,7 @@ Rails.application.routes.draw do
 
   # get 'genres/new'
   # get 'genres/edit'
-
-  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
-  devise_scope :user do
-    root to: "devise/sessions#new"
-  end
+  
 resources :friendships do
   collection do 
     post :friend_accept 
