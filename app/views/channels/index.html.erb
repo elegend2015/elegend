@@ -22,13 +22,37 @@
 
 
 
-<div class="container hidden-xs">
+<div class="container">
 	<div class="header-title">
     	<div class="pull-left">
-    		<h1><a href="index.html"><span class="text-primary">C</span>hannels</a></h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+    		<h1><span class="text-primary">C</span>hannels</h1> 
         </div>
     </div>
+</div>
+
+<div class="container">
+    <section class="content-wrapper">
+        <div class="row">
+            <div class="col-sm-12">
+                <%= form_tag(channels_path, :method => "get",class: "form-inline") do %>
+                <%= text_field_tag :search, params[:search], placeholder: "Search Channel",class: "form-control", required: true, oninvalid: "setCustomValidity('Write a friend name')", onchange: "try{setCustomValidity('')}catch(e){}"  %>
+                <%= submit_tag "Search", class: "btn btn-primary" %>
+                <%= link_to "Create a channel", new_channel_path %>
+                <% end %>
+
+            <% if @channels.present? %>
+                <ul class="nav nav-sidebar">
+                    <% @channels.each do |channel| %>
+                    <li><%= link_to channel.name, channel_path(:id => channel.id) %></li>
+                    <% end %>
+                </ul>
+            <% else %>
+              <p>There are no channels containing name <%= params[:search] %>. Click <%= link_to("here", channels_path, method: :get) %> to search again.</p>
+            <% end %>
+
+            </div>
+        </div>
+    </section>
 </div>
 
 

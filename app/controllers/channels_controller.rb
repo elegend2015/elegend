@@ -1,6 +1,11 @@
 class ChannelsController < ApplicationController
   def index
-  	@channel_post= ChannelPost.all
+    @channels = Channel.all.order('created_at DESC')
+  	if params[:search]
+      @channels = Channel.search(params[:search]).order("created_at DESC")
+    else
+      @channels = Channel.all.order('created_at DESC')
+    end
   end
 
   def new
@@ -41,7 +46,7 @@ class ChannelsController < ApplicationController
       cf.destroy!
     end
     
-    redirect_to root_path
+    redirect_to @channel
   end
 
   def create_new_post
