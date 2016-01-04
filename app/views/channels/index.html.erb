@@ -46,6 +46,8 @@
                     <li><%= link_to channel.name, channel_path(:id => channel.id) %></li>
                     <% end %>
                 </ul>
+            <% elsif params[:search] == nil %>
+                <p></p>
             <% else %>
               <p>There are no channels containing name <%= params[:search] %>. Click <%= link_to("here", channels_path, method: :get) %> to search again.</p>
             <% end %>
