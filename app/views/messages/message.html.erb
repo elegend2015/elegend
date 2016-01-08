@@ -41,15 +41,16 @@
                         <%= @frnd.first_name %>
                     </div>
                 </div>
-                <div class="row maxh18">
-                    <div class="col-sm-12"> 
-                        <div id="chat" class="well">
-                            <%= render :partial => 'messages/message', :collection => @messages %>
+
+                <div class="row maxh18" id="divScroll">
+                    <div class="col-sm-12">
+                        <div id="chat1" class="well">
+                        <%= render :partial => 'messages/message', :collection => @messages %>
                         </div>
                     </div>
                 </div>
                 <div class="pad-top1">
-                    <%= form_for Message.new, :remote => true do |f| %>
+                    <%= form_for Message.new do |f| %>
                         <%= f.hidden_field :user_id, value: current_user.id %>
                         <%= f.hidden_field :friend_id, value: @frnd.id %>
                         <%= f.text_area :content, class: "form-control", rows: "4", required: "true" %><br>
@@ -71,4 +72,8 @@
     <script src="/assets/twitterFetcher_min.js"></script>
     <script src="/assets/jquery.countdown.min.js"></script>
    
+   <script type="text/javascript">
+var objDiv = document.getElementById("divScroll");
+objDiv.scrollTop = objDiv.scrollHeight;
+   </script>
 <% end %>

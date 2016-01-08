@@ -1,12 +1,12 @@
 class MessagesController < ApplicationController
-	def index
-      @users = User.all_except(current_user)  
-    
+	  def index
+      @users = User.all_except(current_user)
   	end
 
   	def create
-    	@message = Message.new(chat_params)
+    	@message = Message.new(msg_params)
       @message.save
+      redirect_to :back
   	end
 
     def message
@@ -19,7 +19,7 @@ class MessagesController < ApplicationController
 
 	private
 
-  	def chat_params
-    	params.require(:message).permit(:user_id , :content, :friend_id)
+  	def msg_params
+    	params.require(:message).permit(:user_id , :friend_id, :content)
   	end
 end
