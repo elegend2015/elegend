@@ -38,65 +38,71 @@
     	<div class="row">
         
         	<!-- SIDEBAR - START -->
-        	<div class="col-sm-4">
+        	<!-- <div class="col-sm-12"> -->
                 
-                <!-- SIDEBAR BOX CHANNEL NOTIFICATION- START -->
-                <%= render :partial => 'layouts/channel_notification' %>
-                <!-- SIDEBAR BOX CHANNEL NOTIFICATION - END -->
+                
                 
                 <!-- SIDEBAR BOX - START -->
-                <div class="box sidebar-box widget-wrapper">
+                <!-- <div class="box sidebar-box widget-wrapper">
                 	<h3>Latest Tweets</h3>
                     <div id="twitter-wrapper">
                     </div>
-                </div>
+                </div> -->
                 <!-- SIDEBAR BOX - END -->
                 
-            </div>
+            <!-- </div> -->
             <!-- SIDEBAR - END -->
             
             <!-- CONTENT BODY - START -->
-            <div class="col-sm-8">
-            	<div class="box">
-                    <div class="row">
-                        <% if @user == current_user %>
-                        <div class="col-sm-8">
-                            <%= form_tag gallery_pic_user_details_path, :multipart => true, :method=>'post', class: "form-inline" do %>
-                                    <div class="form-group"> 
-                                        <%= file_field_tag  "pic", class: "form-control", required: true, oninvalid: "setCustomValidity('Choose a photo')", onchange: "try{setCustomValidity('')}catch(e){}" %>
-                                    </div>
-                                    <div class="form-group"> 
-                                       <%= submit_tag "Add" , class: "btn btn-primary" %>
-                                    </div>                        
-                            <% end %>
-                        </div>
-                        <div class="col-sm-4 text-right">
-                            <% if @pictures.present?  %>
-                            <%= link_to "Remove Images", galleryimage_user_details_path(:id =>current_user.id), method: :get, class: "btn btn-primary" %>
-                            <% end %>
-                        </div>
-                        <% end %>
-                    </div>              
-                </div>
+            <div class="col-sm-12">
+                <% if @user == current_user %>
+                	<div class="box">
+                        <div class="row">                        
+                            <div class="col-sm-8">
+                                <%= form_tag gallery_pic_user_details_path, :multipart => true, :method=>'post', class: "form-inline" do %>
+                                        <div class="form-group"> 
+                                            <%= file_field_tag  "pic", class: "form-control", required: true, oninvalid: "setCustomValidity('Choose a photo')", onchange: "try{setCustomValidity('')}catch(e){}" %>
+                                        </div>
+                                        <div class="form-group"> 
+                                           <%= submit_tag "Add" , class: "btn btn-primary" %>
+                                        </div>                        
+                                <% end %>
+                            </div>
+                            <div class="col-sm-4 text-right">
+                                <% if @pictures.present?  %>
+                                <%= link_to "Remove Images", galleryimage_user_details_path(:id =>current_user.id), method: :get, class: "btn btn-primary" %>
+                                <% end %>
+                            </div>                        
+                        </div>              
+                    </div>
+                <% end %>
 
-            <% if @pictures.present?  %>
-                <div class="box">                                            
-                    <!-- GALLERY POST - START -->
-                    <article class="post gallery-post">
-                        <div class="row gallery-page">
-                            <% for g in @pictures %>
-                                <div class="col-sm-3 ">
-                                  <%= link_to g.pic_url do %>
-                                  <br>
-                                    <%= image_tag g.pic_url, class: "img-responsive img-thumbnail img_height" %>
-                                  <% end %>
-                                </div>
-                            <% end %>                                                           
-                        </div>  
-                    </article>
-                    <!-- GALLERY POST - END -->
-                </div>
-            <% end %>
+            
+                    <div class="box">                                            
+                        <!-- GALLERY POST - START -->
+                        <article class="post gallery-post">
+                            <div class="row gallery-page">
+                                <% if @pictures.present?  %>
+                                    <% for g in @pictures %>
+                                        <div class="col-sm-2 text-center">
+                                          <%= link_to g.pic_url do %>
+                                          <br>
+                                            <%= image_tag g.pic_url, class: "img-responsive img-thumbnail img_height" %>
+                                          <% end %>
+                                        </div>
+                                    <% end %>  
+                                <% else %>
+                                    <% if @user != current_user %>
+                                        <h1 class="text-center">No image found</h1>
+                                    <% else %>
+                                        <h1>Choose a file above to add an image </h1>
+                                    <% end %>
+                                <% end %>                                                
+                            </div>  
+                        </article>
+                        <!-- GALLERY POST - END -->
+                    </div>
+            
 
             </div>
                 <!-- CONTENT BODY - END -->

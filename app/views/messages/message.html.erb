@@ -27,12 +27,21 @@
         </div>
     </div>
 </div>
-<div class="container">
+<div class="container" id="msg">
     <section class="content-wrapper">
         <div class="row">
             <div class="col-sm-4">
-                <% for user in @users %>
-                    <%= link_to user.first_name, message_messages_path(:friend_id =>user.id) %><br>
+
+                <% for f1 in @friends %>
+                        <% ud1 = User.find(f1.friend_id) %>
+                        <% if ud1.profile_pic_url != nil %>        
+                            <%= image_tag ud1.profile_pic_url, class: "img-responsive center-block img-thumbnail" %>
+                        <% else %>
+                            <%= image_tag('profile-img.jpg', class: "img-responsive center-block img-thumbnail") %>
+                        <% end %>
+
+                            <%= link_to ud1.first_name, message_messages_path(:friend_id =>ud1.id) %><br>
+                    
                <% end %>
             </div>
             <div class="col-sm-8">
@@ -71,7 +80,8 @@
     <script src="/assets/jquery.vegas.min.js"></script>
     <script src="/assets/twitterFetcher_min.js"></script>
     <script src="/assets/jquery.countdown.min.js"></script>
-   
+    <script src="/assets/custom.js"></script>
+
    <script type="text/javascript">
 var objDiv = document.getElementById("divScroll");
 objDiv.scrollTop = objDiv.scrollHeight;

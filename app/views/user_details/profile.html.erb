@@ -87,11 +87,11 @@
             <h3><%= link_to("Gallery", gallery_user_details_path(:id =>@user.id), method: :get) %></h3>
         </div>
         <% end %>
-        <div class="box sidebar-box widget-wrapper">
-            <h3>Latest News</h3>
+        <!-- <div class="box sidebar-box widget-wrapper">
+            <h3>Latest Tweets</h3>
             <div id="twitter-wrapper">
             </div>
-        </div>
+        </div> -->
 
     </div>
     <div class="col-sm-8">
@@ -191,7 +191,7 @@
                                <h5><%= link_to "Create a channel", new_channel_path %></h5> 
                             </div>
                             <div class="col-md-6">
-                        <h4>You are following :</h4>
+                        <h4>Following :</h4>
                         <% @channels.each do |channel| %>
                             <!-- <h5>Name: <%= channel.channel_id %></h5> -->
                             <% chd = Channel.find(channel.channel_id) %>
@@ -199,7 +199,7 @@
                         <% end %>
                             </div>
                             <div class="col-md-6">
-                        <h4>Your Channels :</h4>
+                        <h4>Own Channels :</h4>
                             <% @mychannels.each do |mychannel| %>
                                 <h5><%= link_to mychannel.name, channel_path(:id => mychannel.id) %></h5>
                             <% end %>

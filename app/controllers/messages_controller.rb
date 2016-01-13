@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
 	  def index
-      @users = User.all_except(current_user)
+      @friends = Friendship.where(:user_id => current_user, :status => 2)
   	end
 
   	def create
@@ -10,11 +10,12 @@ class MessagesController < ApplicationController
   	end
 
     def message
-      @users = User.all_except(current_user)
+      @friends = Friendship.where(:user_id => current_user, :status => 2)
       @messages1 = Message.where(:user_id =>current_user.id, :friend_id => params["friend_id"])
       @messages2 = Message.where(:user_id =>params["friend_id"], :friend_id=>current_user.id)
       @messages = @messages1.union_all(@messages2).order('created_at')
       @frnd = User.find(params[:friend_id])
+
     end
 
 	private

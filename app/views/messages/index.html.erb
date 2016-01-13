@@ -27,14 +27,31 @@
         </div>
     </div>
 </div>
-<div class="container">
+<div class="container" id="msg-index">
     <section class="content-wrapper">
         <div class="row">
-            <div class="col-sm-4">
-                <% for user in @users %>
-                    <%= link_to user.first_name, message_messages_path(:friend_id =>user.id) %><br>
-               <% end %>
-            </div>
+             <% if @friends.blank? %>
+                 <div class="col-sm-12 text-center">
+                    <h1>You don't have friend to send message.</h1>
+                    <h1><%= link_to("Search friend and send a request.", profile_user_details_path(:id =>current_user.id), method: :get) %></h1>
+                </div>
+            <% else %>
+                <div class="col-sm-4">
+                   
+                    <% for f1 in @friends %>
+                        <% ud1 = User.find(f1.friend_id) %>
+                        <% if ud1.profile_pic_url != nil %>        
+                            <%= image_tag ud1.profile_pic_url, class: "img-responsive center-block img-thumbnail" %>
+                        <% else %>
+                            <%= image_tag('profile-img.jpg', class: "img-responsive center-block img-thumbnail") %>
+                        <% end %>
+                            <%= link_to ud1.first_name, message_messages_path(:friend_id =>ud1.id) %><br>
+                   <% end %>
+                   
+                </div>
+            <% end %>
+            
+
             <div class="col-sm-8">
             </div>
         </div>
@@ -50,5 +67,5 @@
     <script src="/assets/jquery.vegas.min.js"></script>
     <script src="/assets/twitterFetcher_min.js"></script>
     <script src="/assets/jquery.countdown.min.js"></script>
-   
+    <script src="/assets/custom.js"></script>
 <% end %>

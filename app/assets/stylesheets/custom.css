@@ -2495,3 +2495,15 @@ only screen and (max-width: 767px) {
 	max-height: 250px;
 }
 
+#msg .center-block {
+	display: inline-block;
+}
+#msg .img-thumbnail {
+    max-width: 40px;
+}
+#msg-index .center-block {
+	display: inline-block;
+}
+#msg-index .img-thumbnail {
+    max-width: 40px;
+}
